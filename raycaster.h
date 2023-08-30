@@ -26,6 +26,7 @@
 # define	PI		3.1415926535
 # define	P2		PI/2
 # define	P3		3*PI/2
+# define	DG		0.0174533
 
 # define	size	64
 
@@ -58,6 +59,7 @@ typedef struct s_rays
 	float	ray_angle;
 	float	xo;
 	float	yo;
+	float	dist;
 }	t_rays;
 
 //	globals

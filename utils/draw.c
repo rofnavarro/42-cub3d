@@ -47,8 +47,16 @@ void	drawMap(t_map map)
 
 void	drawRays3D()
 {
-	rays.ray_angle = player.angle;
-	for (rays.rays = 0; rays.rays < 10; rays.rays++)
+	rays.ray_angle = player.angle - DG * 30;
+	if (rays.ray_angle < 0)
+	{
+		rays.ray_angle += 2 * PI;
+	}
+	if (rays.ray_angle > 2 * PI)
+	{
+		rays.ray_angle -= 2 * PI;
+	}
+	for (rays.rays = 0; rays.rays < 60; rays.rays++)
 	{
 		//	horizontal lines
 		rays.dept_of_field = 0;
@@ -147,21 +155,54 @@ void	drawRays3D()
 				rays.dept_of_field += 1;
 			}
 		}
+		if (distV < distH)
+		{
+			rays.ray_x = vx;
+			rays.ray_y = vy;
+			rays.dist = distV;
+			glColor3f(0.9, 0, 0);
+		}
 		if (distH < distV)
 		{
 			rays.ray_x = hx;
 			rays.ray_y = hy;
+			rays.dist = distH;
+			glColor3f(0.7, 0, 0);
 		}
-		else if (distV < distH)
-		{
-			rays.ray_x = vx;
-			rays.ray_y = vy;
-		}
-		glColor3f(1, 0, 0);
 		glLineWidth(1);
 		glBegin(GL_LINES);
 		glVertex2i(player.x, player.y);
 		glVertex2i(rays.ray_x, rays.ray_y);
 		glEnd();
+
+		float	dist_norm = player.angle - rays.ray_angle;
+		if (dist_norm < 0)
+		{
+			dist_norm += 2 * PI;
+		}
+		if (dist_norm > 2 * PI)
+		{
+			dist_norm -= 2 * PI;
+		}
+		rays.dist = rays.dist * cos(dist_norm);
+		float	lineH = (size * 320)/ rays.dist;
+		if (lineH > 320)
+			lineH = 320;
+		float	lineO = 120 - lineH / 2;
+		glLineWidth(8);
+		glBegin(GL_LINES);
+		glVertex2i(rays.rays * 8 + 530, lineO);
+		glVertex2i(rays.rays * 8 + 530, lineH + lineO);
+		glEnd();
+
+		rays.ray_angle += DG;
+		if (rays.ray_angle < 0)
+		{
+			rays.ray_angle += 2 * PI;
+		}
+		if (rays.ray_angle > 2 * PI)
+		{
+			rays.ray_angle -= 2 * PI;
+		}		
 	}
 }
