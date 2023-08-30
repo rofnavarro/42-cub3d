@@ -30,3 +30,8 @@ void	buttons(unsigned char key, int x, int y)
 	}
 	glutPostRedisplay();
 }
+
+float	distance(float ax, float ay, float bx, float by, float angle)
+{
+	return (sqrt(((bx - ax) * (bx - ax)) + ((by - ay) * (by - ay))));
+}

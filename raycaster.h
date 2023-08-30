@@ -25,6 +25,7 @@
 
 # define	PI		3.1415926535
 # define	P2		PI/2
+# define	P3		3*PI/2
 
 # define	size	64
 
@@ -75,6 +76,7 @@ void	drawRays3D();
 
 //	utils/moves.c
 void	buttons(unsigned char key, int x, int y);
+float	distance(float ax, float ay, float bx, float by, float angle);
 
 //	ultils/read_map.c
 char	*read_map(char *map);
