@@ -2,6 +2,7 @@
 
 t_player	player;
 t_map		map;
+t_rays		rays;
 
 int	main(int argc, char **argv)
 {
@@ -11,7 +12,7 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
-	glutInitWindowSize(1024, 488);
+	glutInitWindowSize(WIN_W, WIN_H);
 	glutCreateWindow("raycaster - 3D");
 	init();
 	glutDisplayFunc(display);

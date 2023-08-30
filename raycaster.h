@@ -20,8 +20,11 @@
 # include	<GL/glut.h>
 
 //	defines
-# define	PI	3.1415926535
-# define	P2	PI/2
+# define	WIN_W	1024
+# define	WIN_H	512
+
+# define	PI		3.1415926535
+# define	P2		PI/2
 
 # define	size	64
 
@@ -30,6 +33,9 @@ typedef	struct s_player
 {
 	float	x;
 	float	y;
+	float	dx;
+	float	dy;
+	float	angle;
 }	t_player;
 
 typedef	struct s_map
@@ -39,9 +45,24 @@ typedef	struct s_map
 	char	*map_str;
 }	t_map;
 
+typedef struct s_rays
+{
+	int		rays;
+	int		map_x;
+	int		map_y;
+	int		map_pos;
+	int		dept_of_field;
+	float	ray_x;
+	float	ray_y;
+	float	ray_angle;
+	float	xo;
+	float	yo;
+}	t_rays;
+
 //	globals
 extern	t_player	player;
 extern	t_map		map;
+extern	t_rays		rays;
 
 //	ultils/display.c
 void	display();
@@ -50,6 +71,7 @@ void	init();
 //	utils/draw.c
 void	drawPlayer(t_player player);
 void	drawMap(t_map map);
+void	drawRays3D();
 
 //	utils/moves.c
 void	buttons(unsigned char key, int x, int y);

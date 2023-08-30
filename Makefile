@@ -3,7 +3,7 @@ NAME					=				ray
 CC						=				cc
 CCFLAGS					=				-Wall -Werror -Wextra
 
-LIB						=				-lglut -lGL -lGLU
+LIB						=				-lglut -lGL -lGLU -lm
 
 RM						=				rm -rf
 
