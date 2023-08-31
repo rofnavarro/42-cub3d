@@ -186,8 +186,8 @@ void	drawRays3D()
 		}
 		rays.dist = rays.dist * cos(dist_norm);
 		float	lineH = (size * 320)/ rays.dist;
-		if (lineH > 320)
-			lineH = 320;
+		// if (lineH > 320)
+		// 	lineH = 320;
 		float	lineO = 120 - lineH / 2;
 		glLineWidth(8);
 		glBegin(GL_LINES);
