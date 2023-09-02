@@ -203,6 +203,12 @@ void	drawRays3D()
 		if (rays.ray_angle > 2 * PI)
 		{
 			rays.ray_angle -= 2 * PI;
-		}		
+		}
+
+		//draw floor
+		// for (int y = lineO + lineH; y < 320; y++)
+		// {
+
+		// }
 	}
 }
