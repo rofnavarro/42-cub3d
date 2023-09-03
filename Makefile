@@ -8,7 +8,8 @@ LIB						=				-lglut -lGL -lGLU -lm
 RM						=				rm -rf
 
 SRC						=				raycaster.c \
-										$(addprefix utils/, display.c \
+										$(addprefix utils/, check_lines.c \
+															display.c \
 															draw.c \
 															moves.c \
 															read_map.c)

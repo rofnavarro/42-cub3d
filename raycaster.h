@@ -59,6 +59,12 @@ typedef struct s_rays
 	float	ray_angle;
 	float	xo;
 	float	yo;
+	float	distH;
+	float	hx;
+	float	hy;
+	float	distV;
+	float	vx;
+	float	vy;
 	float	dist;
 }	t_rays;
 
@@ -66,6 +72,10 @@ typedef struct s_rays
 extern	t_player	player;
 extern	t_map		map;
 extern	t_rays		rays;
+
+//	utils/check_lines.c
+void    checkHorizontalLines();
+void    checkVerticalLines();
 
 //	ultils/display.c
 void	display();
