@@ -11,6 +11,7 @@ SRC						=				raycaster.c \
 										$(addprefix utils/, check_lines.c \
 															display.c \
 															draw.c \
+															math.c \
 															moves.c \
 															read_map.c)
 

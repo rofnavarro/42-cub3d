@@ -23,10 +23,9 @@
 # define	WIN_W	1024
 # define	WIN_H	512
 
-# define	PI		3.1415926535
-# define	P2		PI/2
-# define	P3		3*PI/2
-# define	DG		0.0174533
+# define 	M_PI	3.14159265358979323846
+# define 	M_PI_2	1.57079632679489661923
+# define 	M_PI_4	0.78539816339744830962
 
 # define	size	64
 
@@ -76,6 +75,7 @@ extern	t_rays		rays;
 //	utils/check_lines.c
 void    checkHorizontalLines();
 void    checkVerticalLines();
+void    checkDistance();
 
 //	ultils/display.c
 void	display();
@@ -83,8 +83,13 @@ void	init();
 
 //	utils/draw.c
 void	drawPlayer(t_player player);
+void	drawDirection(t_player player);
 void	drawMap(t_map map);
 void	drawRays3D();
+
+//	utils/math.c
+int		fixAngle(int x);
+float   degToRad(int x);
 
 //	utils/moves.c
 void	buttons(unsigned char key, int x, int y);

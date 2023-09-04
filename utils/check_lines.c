@@ -8,7 +8,7 @@ void    checkHorizontalLines()
     float	hy = player.y;
     float	hTan = -1/tan(rays.ray_angle);
     //	looking down
-    if (rays.ray_angle > PI)
+    if (rays.ray_angle > M_PI)
     {
         rays.ray_y = (((int)player.y>>6)<<6) - 0.0001;
         rays.ray_x = (player.y - rays.ray_y) * hTan + player.x;
@@ -16,7 +16,7 @@ void    checkHorizontalLines()
         rays.xo = -rays.yo * hTan;
     }
     //	looking up
-    if (rays.ray_angle < PI)
+    if (rays.ray_angle < M_PI)
     {
         rays.ray_y = (((int)player.y>>6)<<6) + 64;
         rays.ray_x = (player.y - rays.ray_y) * hTan + player.x;
@@ -24,7 +24,7 @@ void    checkHorizontalLines()
         rays.xo = -rays.yo * hTan;
     }
     //	looking left or right
-    if (rays.ray_angle == 0 || rays.ray_angle == PI)
+    if (rays.ray_angle == 0 || rays.ray_angle == M_PI)
     {
         rays.ray_x = player.x;
         rays.ray_y = player.y;
@@ -59,7 +59,7 @@ void    checkVerticalLines()
     float	vy = player.y;
     float	vTan = -tan(rays.ray_angle);
     //	looking left
-    if (rays.ray_angle > P2 && rays.ray_angle < P3)
+    if (rays.ray_angle > M_PI_2 && rays.ray_angle < (3 * M_PI / 2))
     {
         rays.ray_x = (((int)player.x>>6)<<6) - 0.0001;
         rays.ray_y = (player.x - rays.ray_x) * vTan + player.y;
@@ -67,7 +67,7 @@ void    checkVerticalLines()
         rays.yo = -rays.xo * vTan;
     }
     //	looking right
-    if (rays.ray_angle < P2 || rays.ray_angle > P3)
+    if (rays.ray_angle < M_PI_2 || rays.ray_angle > (3 * M_PI / 2))
     {
         rays.ray_x = (((int)player.x>>6)<<6) + 64;
         rays.ray_y = (player.x - rays.ray_x) * vTan + player.y;
@@ -75,7 +75,7 @@ void    checkVerticalLines()
         rays.yo = -rays.xo * vTan;
     }
     //	looking up or down
-    if (rays.ray_angle == 0 || rays.ray_angle == PI)
+    if (rays.ray_angle == 0 || rays.ray_angle == M_PI)
     {
         rays.ray_x = player.x;
         rays.ray_y = player.y;
@@ -99,5 +99,23 @@ void    checkVerticalLines()
             rays.ray_y += rays.yo;
             rays.dept_of_field += 1;
         }
+    }
+}
+
+void    checkDistance()
+{
+    if (rays.distV < rays.distH)
+    {
+        rays.ray_x = rays.vx;
+        rays.ray_y = rays.vy;
+        rays.dist = rays.distV;
+        glColor3f(0.9, 0, 0);
+    }
+    if (rays.distH < rays.distV)
+    {
+        rays.ray_x = rays.hx;
+        rays.ray_y = rays.hy;
+        rays.dist = rays.distH;
+        glColor3f(0.7, 0, 0);
     }
 }
