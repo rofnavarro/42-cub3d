@@ -14,7 +14,7 @@ void	drawDirection(t_player player)
 	glLineWidth(3);
 	glBegin(GL_LINES);
 	glVertex2i(player.x, player.y);
-	glVertex2i(player.x + player.dx * 5, player.y + player.dy * 5);
+	glVertex2i(player.x + player.dx * 20, player.y + makeplayer.dy * 20);
 	glEnd();
 }
 
@@ -50,38 +50,58 @@ void	drawMap(t_map map)
 
 void	drawRays3D()
 {
-	rays.ray_angle = fixAngle(player.angle);
+	glColor3f(0, 1, 1);
+	glBegin(GL_QUADS);
+	glVertex2i(526, 0);
+	glVertex2i(1006, 0);
+	glVertex2i(1006, 160);
+	glVertex2i(526, 160);
+	glEnd();
+
+	glColor3f(0, 0, 1);
+	glBegin(GL_QUADS);
+	glVertex2i(526, 160);
+	glVertex2i(1006, 160);
+	glVertex2i(1006, 320);
+	glVertex2i(526, 320);
+	glEnd();
+
+	rays.ray_angle = fixAngle(player.angle + 30);
 
 	for (rays.rays = 0; rays.rays < 60; rays.rays++)
 	{
+		//	draw 2D ray
 		checkHorizontalLines();
 		checkVerticalLines();
 
 		checkDistance();
 
-		glLineWidth(1);
+		glLineWidth(2);
 		glBegin(GL_LINES);
 		glVertex2i(player.x, player.y);
 		glVertex2i(rays.ray_x, rays.ray_y);
 		glEnd();
 
-		float	dist_norm = player.angle - rays.ray_angle;
-		if (dist_norm < 0)
-			dist_norm += 2 * M_PI;
-		if (dist_norm > 2 * M_PI)
-			dist_norm -= 2 * M_PI;
-		rays.dist = rays.dist * cos(dist_norm);
-		float	lineH = (size * 320)/ rays.dist;
+		//	fix fisheye
+		float	dist_norm = fixAngle(player.angle - rays.ray_angle);
+		rays.dist = rays.dist * cos(degToRad(dist_norm));
+
+		//	height and limit heigh
+		int	lineH = (size * 320)/ rays.dist;
 		// if (lineH > 320)
 		// 	lineH = 320;
-		float	lineO = 120 - lineH / 2;
+
+		//	offset
+		int	lineO = 160 - (lineH >> 1);
+
+		//	draw vertical wall
 		glLineWidth(8);
 		glBegin(GL_LINES);
 		glVertex2i(rays.rays * 8 + 530, lineO);
 		glVertex2i(rays.rays * 8 + 530, lineH + lineO);
 		glEnd();
 
-		rays.ray_angle += fixAngle(rays.ray_angle - 1);
+		rays.ray_angle = fixAngle(rays.ray_angle - 1);
 
 		//draw floor
 		// for (int y = lineO + lineH; y < 320; y++)

@@ -4,27 +4,25 @@ void    checkHorizontalLines()
 {
     rays.dept_of_field = 0;
     rays.distH = 10000000;
-    float	hx = player.x;
-    float	hy = player.y;
-    float	hTan = -1/tan(rays.ray_angle);
-    //	looking down
-    if (rays.ray_angle > M_PI)
+    float	tangent = 1/tan(degToRad(rays.ray_angle));
+    //	looking up
+    if (sin(degToRad(rays.ray_angle) > 0.001))
     {
         rays.ray_y = (((int)player.y>>6)<<6) - 0.0001;
-        rays.ray_x = (player.y - rays.ray_y) * hTan + player.x;
+        rays.ray_x = (player.y - rays.ray_y) * tangent + player.x;
         rays.yo = -64;
-        rays.xo = -rays.yo * hTan;
+        rays.xo = -rays.yo * tangent;
     }
-    //	looking up
-    if (rays.ray_angle < M_PI)
+    //	looking down
+    else if (sin(degToRad(rays.ray_angle)) < -0.001)
     {
         rays.ray_y = (((int)player.y>>6)<<6) + 64;
-        rays.ray_x = (player.y - rays.ray_y) * hTan + player.x;
+        rays.ray_x = (player.y - rays.ray_y) * tangent + player.x;
         rays.yo = 64;
-        rays.xo = -rays.yo * hTan;
+        rays.xo = -rays.yo * tangent;
     }
     //	looking left or right
-    if (rays.ray_angle == 0 || rays.ray_angle == M_PI)
+    else
     {
         rays.ray_x = player.x;
         rays.ray_y = player.y;
@@ -37,9 +35,7 @@ void    checkHorizontalLines()
         rays.map_pos = rays.map_y * map.x + rays.map_x;
         if (rays.map_pos > 0 && rays.map_pos < map.x * map.y && map.map_str[rays.map_pos] == '1')
         {
-            hx = rays.ray_x;
-            hy = rays.ray_y;
-            rays.distH = distance(player.x, player.y, hx, hy, rays.ray_angle);
+            rays.distH = cos(degToRad(rays.ray_angle)) * (rays.ray_x - player.x) - sin(degToRad(rays.ray_angle)) * (rays.ray_y - player.y);
             rays.dept_of_field = 8;
         }
         else
@@ -55,27 +51,26 @@ void    checkVerticalLines()
 {
     rays.dept_of_field = 0;
     rays.distV = 10000000;
-    float	vx = player.x;
-    float	vy = player.y;
-    float	vTan = -tan(rays.ray_angle);
+
+    float   tangent = tan(degToRad(rays.ray_angle));
     //	looking left
-    if (rays.ray_angle > M_PI_2 && rays.ray_angle < (3 * M_PI / 2))
-    {
-        rays.ray_x = (((int)player.x>>6)<<6) - 0.0001;
-        rays.ray_y = (player.x - rays.ray_x) * vTan + player.y;
-        rays.xo = -64;
-        rays.yo = -rays.xo * vTan;
-    }
-    //	looking right
-    if (rays.ray_angle < M_PI_2 || rays.ray_angle > (3 * M_PI / 2))
+    if (cos(degToRad(rays.ray_angle)) > 0.001)
     {
         rays.ray_x = (((int)player.x>>6)<<6) + 64;
-        rays.ray_y = (player.x - rays.ray_x) * vTan + player.y;
+        rays.ray_y = (player.x - rays.ray_x) * tangent + player.y;
         rays.xo = 64;
-        rays.yo = -rays.xo * vTan;
+        rays.yo = -rays.xo * tangent;
+    }
+    //	looking right
+    else if (cos(degToRad(rays.ray_angle)) < -0.001)
+    {
+        rays.ray_x = (((int)player.x>>6)<<6) -0.0001;
+        rays.ray_y = (player.x - rays.ray_x) * tangent + player.y;
+        rays.xo = -64;
+        rays.yo = -rays.xo * tangent;
     }
     //	looking up or down
-    if (rays.ray_angle == 0 || rays.ray_angle == M_PI)
+    else
     {
         rays.ray_x = player.x;
         rays.ray_y = player.y;
@@ -88,9 +83,7 @@ void    checkVerticalLines()
         rays.map_pos = rays.map_y * map.x + rays.map_x;
         if (rays.map_pos > 0 && rays.map_pos < map.x * map.y && map.map_str[rays.map_pos] == '1')
         {
-            vx = rays.ray_x;
-            vy = rays.ray_y;
-            rays.distV = distance(player.x, player.y, vx, vy, rays.ray_angle);
+            rays.distV = (cos(degToRad(rays.ray_angle)) * (rays.ray_x - player.x)) - (sin(degToRad(rays.ray_angle)) * (rays.ray_y - player.y));
             rays.dept_of_field = 8;
         }
         else
@@ -100,6 +93,8 @@ void    checkVerticalLines()
             rays.dept_of_field += 1;
         }
     }
+    rays.vx = rays.ray_x;
+    rays.vy = rays.ray_y;
 }
 
 void    checkDistance()
