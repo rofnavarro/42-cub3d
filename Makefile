@@ -6,7 +6,7 @@
 #    By: rferrero <rferrero@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/05 13:15:28 by rferrero          #+#    #+#              #
-#    Updated: 2023/09/05 13:21:09 by rferrero         ###   ########.fr        #
+#    Updated: 2023/09/05 13:56:20 by rferrero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ LIBX					=				-lmlx -lX11 -lXext
 RM						=				rm -rf
 
 SRC						=				cub3d.c \
-										$(addprefix utils/, )
+										$(addprefix utils/, ft_check_args.c \
+															)
 
 OBJ						=				$(SRC:%.c=%.o)
 
@@ -31,7 +32,7 @@ all:					$(NAME)
 
 $(NAME):				$(OBJ)
 						$(MAKE) -C $(LIBFT_PATH)
-						$(CC) $(CCFLAGS) $(OBJ) $(LIB) -o $(NAME)
+						$(CC) $(CCFLAGS) $(OBJ) $(LIBFT) $(LIBX) -o $(NAME)
 
 clean:
 						$(MAKE) -C $(LIBFT_PATH) clean

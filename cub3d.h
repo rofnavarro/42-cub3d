@@ -1,29 +1,41 @@
-#ifndef		CUB3D_H
-# define	CUB3D_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rferrero <rferrero@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/05 13:29:03 by rferrero          #+#    #+#             */
+/*   Updated: 2023/09/05 14:16:15 by rferrero         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef CUB3D_H
+# define CUB3D_H
 
 //	math
-# include	<math.h>
+# include <math.h>
 //	open()
-# include	<fcntl.h>
+# include <fcntl.h>
 //	close(), read(), write()
-# include	<unistd.h>
+# include <unistd.h>
 //	printf(), perror()
-# include	<stdio.h>
+# include <stdio.h>
 //	malloc(), free(), exit()
-# include	<stdlib.h>
+# include <stdlib.h>
 //	strerror()
-# include	<string.h>
+# include <string.h>
 //	minilibX
-# include	<mlx.h>
+# include <mlx.h>
 //	libft
-# include	"./libft/libft.a"
+# include "./libft/libft.h"
 
 //	defines
-# define	WIN_W	1024
-# define	WIN_H	512
+# define WIN_W	1024
+# define WIN_H	512
 
 //	structs
-typedef	struct s_player
+typedef struct s_player
 {
 	float	x;
 	float	y;
@@ -32,11 +44,22 @@ typedef	struct s_player
 	float	angle;
 }	t_player;
 
-typedef	struct s_map
+typedef struct s_map
 {
 	int		x;
 	int		y;
 	char	*map_str;
 }	t_map;
+
+typedef struct s_game
+{
+	void		*mlx;
+	void		*win;
+	// t_player	player;
+	// t_map		map;
+}	t_game;
+
+//	utils/ft_check_args.c
+void	ft_check_args(int argc, char **argv);
 
 #endif
