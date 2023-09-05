@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 17:25:07 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/05 17:28:43 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/09/05 18:50:00 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	ft_is_closed_h(t_game *game)
 
 static int	ft_is_closed_v(t_game *game)
 {
-	
+
 }
 
 int	ft_validate_map(t_game *game)

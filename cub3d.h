@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 13:29:03 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/05 17:27:08 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/09/05 18:23:13 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ typedef struct s_game
 }	t_game;
 
 //	utils/ft_check_args.c
-void	ft_check_args(int argc, char **argv);
+int		ft_check_args(int argc, char **argv);
 //	utils/ft_map.c
 int		ft_validate_map(t_game *game);
 //	utils/ft_read_map.c
