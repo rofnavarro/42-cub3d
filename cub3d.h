@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rferrero <rferrero@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 13:29:03 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/05 15:05:50 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/09/05 17:27:08 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,14 @@ typedef struct s_game
 {
 	void		*mlx;
 	void		*win;
-	// t_player	player;
+	t_player	player;
 	t_map		map;
 }	t_game;
 
 //	utils/ft_check_args.c
 void	ft_check_args(int argc, char **argv);
+//	utils/ft_map.c
+int		ft_validate_map(t_game *game);
 //	utils/ft_read_map.c
 char	*ft_read_map(t_game *game, char argv[]);
 

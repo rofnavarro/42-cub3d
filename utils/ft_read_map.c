@@ -3,37 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_read_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rferrero <rferrero@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 14:48:44 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/05 14:56:22 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/09/05 17:27:19 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-static void	ft_empty_map(t_game *game, char *map)
-{
-	int	i;
-
-	i = 0;
-	if (map[i] == '\0')
-	{
-		free(map);
-		printf("Empty map.\n");
-		exit(EXIT_FAILURE);
-	}
-	while (map[i])
-	{
-		if (map[i] == '\n' && map[i + 1] != '1')
-		{
-			free(map);
-			printf("Invalid map.\n");
-			exit(EXIT_FAILURE);
-		}
-		i++;
-	}
-}
 
 char	*ft_read_map(t_game *game, char argv[])
 {
@@ -46,7 +23,7 @@ char	*ft_read_map(t_game *game, char argv[])
 	if (fd < 0)
 	{
 		free(map_str);
-		printf("File broken or does not exist.\n");
+		perror("Error\nFile broken or does not exist.\n");
 		exit(EXIT_FAILURE);
 	}
 	while (1)
@@ -60,8 +37,6 @@ char	*ft_read_map(t_game *game, char argv[])
 		map_str = ft_strjoin_free(map_str, tmp);
 		free(tmp);
 	}
-	free(tmp);
 	close(fd);
-	ft_empty_map(game, map_str);
 	return (map_str);
 }

@@ -1,33 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   ft_map.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/05 13:28:52 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/05 17:32:10 by rferrero         ###   ########.fr       */
+/*   Created: 2023/09/05 17:25:07 by rferrero          #+#    #+#             */
+/*   Updated: 2023/09/05 17:28:43 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
-int	main(int argc, char **argv)
+static int	ft_empty_map(t_game *game)
 {
-	t_game	game;
+	int	i;
 
-	ft_check_args(argc, argv);
-	game.map.map_str = ft_read_map(&game, argv[1]);
-	if (ft_validate_map(&game) == 1)
+	i = 0;
+	if (game->map.map_str[i] == '\0')
+	{
+		free(game->map.map_str);
+		perror("Error\nEmpty map");
 		return (EXIT_FAILURE);
-	game.mlx = mlx_init();
-	game.map.matrix = ft_split(game.map.map_str, '\n');
-	free(game.map.map_str);
+	}
+	return (EXIT_SUCCESS);
+}
 
-	game.win = mlx_new_window(game.mlx, WIN_W, WIN_H, "cub3D - rinacio && rferrero");
+static int	ft_is_closed_h(t_game *game)
+{
 
-	mlx_destroy_window(game.mlx, game.win);
-	mlx_destroy_display(game.mlx);
-	free(game.mlx);
+}
+
+static int	ft_is_closed_v(t_game *game)
+{
+	
+}
+
+int	ft_validate_map(t_game *game)
+{
+	if (ft_empty_map(game) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
