@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 13:28:52 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/05 18:46:34 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/09/05 18:53:32 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,9 @@ int	main(int argc, char **argv)
 {
 	t_game	game;
 
-	if (ft_check_args(argc, argv) != EXIT_SUCCESS)
-		return (EXIT_FAILURE);
+	ft_check_args(argc, argv);
 	game.map.map_str = ft_read_map(&game, argv[1]);
-	if (ft_validate_map(&game) == EXIT_FAILURE)
-		return (EXIT_FAILURE);
+	ft_validate_map(&game);
 	game.mlx = mlx_init();
 	game.map.matrix = ft_split(game.map.map_str, '\n');
 	free(game.map.map_str);

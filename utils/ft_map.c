@@ -6,13 +6,13 @@
 /*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 17:25:07 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/05 18:50:00 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/09/05 18:57:30 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-static int	ft_empty_map(t_game *game)
+static void	ft_empty_map(t_game *game)
 {
 	int	i;
 
@@ -20,10 +20,9 @@ static int	ft_empty_map(t_game *game)
 	if (game->map.map_str[i] == '\0')
 	{
 		free(game->map.map_str);
-		perror("Error\nEmpty map");
-		return (EXIT_FAILURE);
+		printf("Error\n%s but it is an empty file\n", strerror(17));
+		exit(EXIT_FAILURE);
 	}
-	return (EXIT_SUCCESS);
 }
 
 static int	ft_is_closed_h(t_game *game)
@@ -36,9 +35,7 @@ static int	ft_is_closed_v(t_game *game)
 
 }
 
-int	ft_validate_map(t_game *game)
+void	ft_validate_map(t_game *game)
 {
-	if (ft_empty_map(game) == EXIT_FAILURE)
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
+	ft_empty_map(game);
 }
