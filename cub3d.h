@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 13:29:03 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/05 14:52:46 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/09/05 15:05:50 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_map
 	int		x;
 	int		y;
 	char	*map_str;
+	char	**matrix;
 }	t_map;
 
 typedef struct s_game
