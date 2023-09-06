@@ -6,7 +6,7 @@
 #    By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/05 13:15:28 by rferrero          #+#    #+#              #
-#    Updated: 2023/09/05 18:16:08 by rferrero         ###   ########.fr        #
+#    Updated: 2023/09/06 17:23:05 by rferrero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,8 +24,8 @@ RM						=				rm -rf
 
 SRC						=				cub3d.c \
 										$(addprefix utils/, ft_check_args.c \
-															ft_map.c \
 															ft_read_map.c \
+															ft_validate_map.c \
 															)
 
 OBJ						=				$(SRC:%.c=%.o)
