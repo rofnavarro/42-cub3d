@@ -1,30 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/05 13:28:52 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/07 15:27:22 by rferrero         ###   ########.fr       */
+/*   Created: 2023/09/06 21:29:44 by rferrero          #+#    #+#             */
+/*   Updated: 2023/09/06 22:11:42 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
-int	main(int argc, char **argv)
+void	ft_free_matrix(char	**matrix)
 {
-	t_game	game;
+	int	i;
 
-	ft_preparation(&game, argc, argv);
+	i = -1;
+	while (matrix[++i])
+	{
+		free(matrix[i]);
+	}
+	free(matrix);
+}
 
-	// int i = -1;
-	// while (game.map.config[++i])
-	// 	printf("%s\n", game.map.config[i]);
-	// i = -1;
-	// while (game.map.map[++i])
-	// 	printf("%s\n", game.map.map[i]);
+int	ft_matrix_size(char **matrix)
+{
+	int	i;
 
-	ft_finish(&game);
-	return (EXIT_SUCCESS);
+	i = 0;
+	while (matrix[i] && *matrix != NULL)
+		i++;
+	return (i);
+}
+
+char	**ft_matrix_calloc(int size)
+{
+	char	**ret;
+
+	ret = (char **)ft_calloc(sizeof(char *), size);
+	return (ret);
 }
