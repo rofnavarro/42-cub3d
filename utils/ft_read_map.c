@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 14:48:44 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/05 18:59:59 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/09/06 22:49:02 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,35 @@ char	*ft_read_map(t_game *game, char argv[])
 	}
 	close(fd);
 	return (map_str);
+}
+
+char	**ft_map_config(t_game	*game)
+{
+	int		i;
+	char	**ret_config;
+
+	i = 0;
+	ret_config = ft_matrix_calloc(7);
+	while (i < 6)
+	{
+		ret_config[i] = ft_strdup(game->map.matrix[i]);
+		i++;
+	}
+	return (ret_config);
+}
+
+char	**ft_map_map(t_game *game)
+{
+	int		i;
+	char	**ret_map;
+
+	i = ft_matrix_size(game->map.matrix) - ft_matrix_size(game->map.config);
+	ret_map = ft_matrix_calloc(i);
+	i = 6;
+	while (i < ft_matrix_size(game->map.matrix))
+	{
+		ret_map[i - 6] = ft_strdup(game->map.matrix[i]);
+		i++;
+	}
+	return (ret_map);
 }
