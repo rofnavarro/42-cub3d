@@ -6,7 +6,7 @@
 #    By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/05 13:15:28 by rferrero          #+#    #+#              #
-#    Updated: 2023/09/06 21:31:04 by rferrero         ###   ########.fr        #
+#    Updated: 2023/09/07 15:22:30 by rferrero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,10 +23,10 @@ LIBX					=				-lmlx -lX11 -lXext
 RM						=				rm -rf
 
 SRC						=				cub3d.c \
-										$(addprefix utils/, ft_check_args.c \
-															ft_free.c \
+										$(addprefix utils/, ft_finish.c \
+															ft_matrix.c \
+															ft_preparation.c \
 															ft_read_map.c \
-															ft_validate_map.c \
 															)
 
 OBJ						=				$(SRC:%.c=%.o)

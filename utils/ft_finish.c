@@ -1,41 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_validate_map.c                                  :+:      :+:    :+:   */
+/*   ft_finish.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/05 17:25:07 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/06 17:28:04 by rferrero         ###   ########.fr       */
+/*   Created: 2023/09/07 15:16:39 by rferrero          #+#    #+#             */
+/*   Updated: 2023/09/07 15:16:57 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-static void	ft_empty_map(t_game *game)
+void	ft_finish(t_game *game)
 {
-	int	i;
-
-	i = 0;
-	if (game->map.map_str[i] == '\0')
-	{
-		free(game->map.map_str);
-		printf("Error\n%s but it is an empty file\n", strerror(17));
-		exit(EXIT_FAILURE);
-	}
-}
-
-static int	ft_is_closed_h(t_game *game)
-{
-
-}
-
-static int	ft_is_closed_v(t_game *game)
-{
-
-}
-
-void	ft_validate_map(t_game *game)
-{
-	ft_empty_map(game);
+	mlx_destroy_window(game->mlx, game->win);
+	mlx_destroy_display(game->mlx);
+	ft_free_matrix(game->map.config);
+	ft_free_matrix(game->map.map);
+	free(game->mlx);
 }
