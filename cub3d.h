@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 13:29:03 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/08 22:16:08 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/09/09 11:57:20 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,7 @@ typedef struct s_game
 void	ft_finish(t_game *game);
 //	utils/ft_map_validation.c
 void	ft_check_characters(t_game *game);
-void	ft_check_for_one(t_game *game, int i, int j);
-void	ft_check_ones_and_zeros(t_game *game, int i, int j);
 void	ft_map_is_closed(t_game *game);
-void	ft_map_validation(t_game *game);
 //	utils/ft_matrix.c
 void	ft_free_matrix(char **matrix);
 int		ft_matrix_size(char **matrix);
@@ -78,6 +75,7 @@ void	ft_player_position(t_player *player, char **map);
 void	ft_player_to_zero(t_player *player, char **map);
 void	ft_player_to_direction(t_player *player, char **map);
 //	utils/ft_preparation.c
+void	ft_map_validation(t_game *game);
 void	ft_preparation(t_game *game, int argc, char **argv);
 //	utils/ft_read_map.c
 char	*ft_read_map(t_game *game, char argv[]);

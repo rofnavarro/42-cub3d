@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 13:42:49 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/08 18:27:03 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/09/09 11:54:19 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,15 @@ static void	ft_empty_map(char **str)
 		printf("Error\n%s but it is an empty file\n", strerror(17));
 		exit(EXIT_FAILURE);
 	}
+}
+
+void	ft_map_validation(t_game *game)
+{
+	ft_check_characters(game);
+	ft_player_position(&game->player, game->map.map);
+	ft_player_to_zero(&game->player, game->map.map);
+	ft_map_is_closed(game);
+	ft_player_to_direction(&game->player, game->map.map);
 }
 
 void	ft_preparation(t_game *game, int argc, char **argv)
