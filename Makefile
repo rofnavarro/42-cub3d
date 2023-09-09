@@ -6,7 +6,7 @@
 #    By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/05 13:15:28 by rferrero          #+#    #+#              #
-#    Updated: 2023/09/07 21:01:08 by rferrero         ###   ########.fr        #
+#    Updated: 2023/09/08 18:25:19 by rferrero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ RM						=				rm -rf
 
 SRC						=				cub3d.c \
 										$(addprefix utils/, ft_finish.c \
+															ft_map_validation.c \
 															ft_matrix.c \
 															ft_player.c \
 															ft_preparation.c \
