@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 14:48:44 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/07 14:44:34 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/09/07 21:16:32 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	*ft_read_map(t_game *game, char argv[])
 	return (map_str);
 }
 
-char	**ft_map_config(t_game	*game)
+char	**ft_map_config(char **matrix)
 {
 	int		i;
 	char	**ret_config;
@@ -50,23 +50,23 @@ char	**ft_map_config(t_game	*game)
 	ret_config = ft_matrix_calloc(7);
 	while (i < 6)
 	{
-		ret_config[i] = ft_strdup(game->map.matrix[i]);
+		ret_config[i] = ft_strdup(matrix[i]);
 		i++;
 	}
 	return (ret_config);
 }
 
-char	**ft_map_map(t_game *game)
+char	**ft_map_map(char **matrix)
 {
 	int		i;
 	char	**ret_map;
 
-	i = ft_matrix_size(game->map.matrix) - 6;
-	ret_map = ft_matrix_calloc(i);
+	i = ft_matrix_size(matrix) - 6;
+	ret_map = ft_matrix_calloc(i + 1);
 	i = 6;
-	while (i < ft_matrix_size(game->map.matrix) - 1)
+	while (i < ft_matrix_size(matrix))
 	{
-		ret_map[i - 6] = ft_strdup(game->map.matrix[i]);
+		ret_map[i - 6] = ft_strdup(matrix[i]);
 		i++;
 	}
 	return (ret_map);
