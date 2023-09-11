@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_map_validation.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: rferrero <rferrero@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 18:23:53 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/09 11:57:41 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/09/11 16:10:26 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	ft_acceptable_char(t_game *game, int i, int j, int *player)
 		game->map.map[i][j] != '1' && game->map.map[i][j] != '0' && \
 		game->map.map[i][j] != ' ')
 	{
-		printf("Error\nMap must have ONE player\n");
+		printf("Error\nMap have an invallid char\n");
 		ft_free_matrix(game->map.config);
 		ft_free_matrix(game->map.map);
 		exit(EXIT_FAILURE);
@@ -84,6 +84,10 @@ static void	ft_check_ones_and_zeros(t_game *game, int i, int j)
 	ft_check_for_one(game, i + 1, j);
 	ft_check_for_one(game, i, j - 1);
 	ft_check_for_one(game, i, j + 1);
+	ft_check_for_one(game, i - 2, j);
+	ft_check_for_one(game, i + 2, j);
+	ft_check_for_one(game, i, j - 2);
+	ft_check_for_one(game, i, j + 2);
 }
 
 void	ft_map_is_closed(t_game *game)
