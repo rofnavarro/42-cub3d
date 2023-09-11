@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: rferrero <rferrero@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 13:29:03 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/09 11:57:20 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/09/11 18:13:29 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,21 +34,26 @@
 # define WIN_W	1024
 # define WIN_H	512
 
+# define PI	3.14159265358979323846
+
 //	structs
-typedef struct s_player
+typedef struct s_point
 {
 	float	x;
 	float	y;
-	float	dx;
-	float	dy;
+}	t_point;
+
+typedef struct s_player
+{
+	t_point	position;
+	t_point	displacement;
 	float	angle;
 	char	direction;
 }	t_player;
 
 typedef struct s_map
 {
-	int		x;
-	int		y;
+	t_point	location;
 	char	**config;
 	char	**map;
 }	t_map;
@@ -66,6 +71,10 @@ void	ft_finish(t_game *game);
 //	utils/ft_map_validation.c
 void	ft_check_characters(t_game *game);
 void	ft_map_is_closed(t_game *game);
+//	utils/ft_math.c
+float	ft_deg_to_rad(int deg);
+int		ft_fix_angle(int angle);
+float	ft_distance(t_point a, t_point b, float angle);
 //	utils/ft_matrix.c
 void	ft_free_matrix(char **matrix);
 int		ft_matrix_size(char **matrix);

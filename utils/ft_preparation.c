@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_preparation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: rferrero <rferrero@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 13:42:49 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/09 11:54:19 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/09/11 17:38:08 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ static void	ft_check_args(int argc, char **argv)
 	}
 	else if (!ft_strchr(argv[1], '.'))
 	{
-		printf("Error\n%s or an executable\nMust use a file.cub\n", strerror(21));
+		printf("Error\n%s or an executable\nMust use a file.cub\n", \
+				strerror(21));
 		exit(EXIT_FAILURE);
 	}
 	else if (ft_strlen(ft_strchr(argv[1], '.') + 1) != 3 || \
