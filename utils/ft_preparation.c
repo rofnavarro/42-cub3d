@@ -21,7 +21,8 @@ static void	ft_check_args(int argc, char **argv)
 	}
 	else if (!ft_strchr(argv[1], '.'))
 	{
-		printf("Error\n%s or an executable\nMust use a file.cub\n", strerror(21));
+		printf("Error\n%s or an executable\nMust use a file.cub\n", \
+				strerror(21));
 		exit(EXIT_FAILURE);
 	}
 	else if (ft_strlen(ft_strchr(argv[1], '.') + 1) != 3 || \
