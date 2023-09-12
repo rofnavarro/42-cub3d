@@ -6,7 +6,7 @@
 /*   By: rinacio <rinacio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 13:42:49 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/11 16:51:24 by rinacio          ###   ########.fr       */
+/*   Updated: 2023/09/12 16:53:24 by rinacio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,10 @@ void	ft_preparation(t_game *game, int argc, char **argv)
 	ft_config_validation(game);
 	ft_map_validation(game);
 	game->mlx = mlx_init();
+	if (!game->mlx)
+		ft_validation_exit(game, "Error while initializing mlx\n");
 	game->win = mlx_new_window(game->mlx, WIN_W, WIN_H, \
 								"cub3D - rinacio && rferrero");
+	if (!game->win)
+		ft_validation_exit(game, "Error while opening game window\n");
 }

@@ -6,7 +6,7 @@
 /*   By: rinacio <rinacio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 13:29:03 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/12 16:31:07 by rinacio          ###   ########.fr       */
+/*   Updated: 2023/09/12 17:30:18 by rinacio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@
 # include <mlx.h>
 //	libft
 # include "./libft/libft.h"
+//	X11
+# include <X11/keysym.h>
+# include <X11/X.h>
 
 //	defines
 # define WIN_W	1024
@@ -73,7 +76,8 @@ typedef enum e_direction
 }	t_direction;
 
 //	utils/ft_finish.c
-void	ft_finish(t_game *game);
+int		ft_finish(t_game *game);
+void	ft_validation_exit(t_game *game, char *msg);
 //	utils/ft_map_validation.c
 void	ft_check_characters(t_game *game);
 void	ft_map_is_closed(t_game *game);
@@ -99,7 +103,7 @@ void	ft_get_map_config(t_game *game, char **line);
 void	ft_check_valid_texture_path(t_game *game, char **path);
 void	ft_check_rgb(t_game *game, char **rgb, int *color);
 void	ft_populate_path_array(t_game *game, char **line, int i);
-// utils/ft_exit.c
-void	ft_validation_exit(t_game *game, char *msg);
+// utils/ft_handle_keypress.c
+int		ft_handle_keypress(int keysym, t_game *game);
 
 #endif
