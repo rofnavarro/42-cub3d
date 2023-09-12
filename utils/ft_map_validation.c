@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_map_validation.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rferrero <rferrero@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rinacio <rinacio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 18:23:53 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/11 16:37:26 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/09/12 16:39:10 by rinacio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,7 @@ static void	ft_acceptable_char(t_game *game, int i, int j, int *player)
 		game->map.map[i][j] != 'E' && game->map.map[i][j] != 'W' && \
 		game->map.map[i][j] != '1' && game->map.map[i][j] != '0' && \
 		game->map.map[i][j] != ' ')
-	{
-		printf("Error\nMap have an invallid char\n");
-		ft_free_matrix(game->map.config);
-		ft_free_matrix(game->map.map);
-		exit(EXIT_FAILURE);
-	}
+		ft_validation_exit(game, "Map have an invallid char\n");
 }
 
 void	ft_check_characters(t_game *game)
@@ -48,33 +43,18 @@ void	ft_check_characters(t_game *game)
 		i++;
 	}
 	if (player != 1)
-	{
-		printf("Error\nMap must have ONE player\n");
-		ft_free_matrix(game->map.config);
-		ft_free_matrix(game->map.map);
-		exit(EXIT_FAILURE);
-	}
+		ft_validation_exit(game, "Map must have ONE player\n");
 }
 
 static void	ft_check_for_one(t_game *game, int i, int j)
 {
 	if (i < 0 || i > (ft_matrix_size(game->map.map)) - 1 || \
 		j < 0 || j > ft_strlen(game->map.map[i]) - 1)
-	{
-		printf("Error\nMap from file is not closed\n");
-		ft_free_matrix(game->map.config);
-		ft_free_matrix(game->map.map);
-		exit(EXIT_FAILURE);
-	}
+		ft_validation_exit(game, "Map from file is not closed\n");
 	else
 	{
 		if (game->map.map[i][j] != '1' && game->map.map[i][j] != '0')
-		{
-			printf("Error\nMap from file is not closed\n");
-			ft_free_matrix(game->map.config);
-			ft_free_matrix(game->map.map);
-			exit(EXIT_FAILURE);
-		}
+			ft_validation_exit(game, "Map from file is not closed");
 	}
 }
 

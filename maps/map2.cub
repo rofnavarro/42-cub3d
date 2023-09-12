@@ -1,17 +1,17 @@
 SO ./texture/teste1
-NO ./texture/teste2
-WE ./texture/teste3
-EA ./texture/teste
+NO ./texture/teste3
+EA ./texture/teste2
+WE ./texture/teste4
 
 F 220,100,0
-C 225,30,0
+C 255,30,0
 
 
 
 
 
         1111111111111111111111111
-        100N000000110000000000001
+        100Z000000110000000000001
         1011000001110000000000001
         1001000000000000000000011
 11111111101100000111000000000001

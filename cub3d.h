@@ -6,7 +6,7 @@
 /*   By: rinacio <rinacio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 13:29:03 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/11 18:25:37 by rinacio          ###   ########.fr       */
+/*   Updated: 2023/09/12 16:31:07 by rinacio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,14 @@ typedef struct s_game
 	t_map		map;
 }	t_game;
 
+typedef enum e_direction
+{
+	NO,
+	SO,
+	EA,
+	WE
+}	t_direction;
+
 //	utils/ft_finish.c
 void	ft_finish(t_game *game);
 //	utils/ft_map_validation.c
@@ -73,6 +81,7 @@ void	ft_map_is_closed(t_game *game);
 void	ft_free_matrix(char **matrix);
 int		ft_matrix_size(char **matrix);
 char	**ft_matrix_calloc(int size);
+int		ft_is_numeric(char **matrix);
 //	utils/ft_player.c
 void	ft_player_position(t_player *player, char **map);
 void	ft_player_to_zero(t_player *player, char **map);
@@ -86,11 +95,10 @@ char	**ft_map_config(char **matrix);
 char	**ft_map_map(char **matrix);
 // utils/ft_config_validation.c
 void	ft_config_validation(t_game *game);
-int		count_matrix_lines(char **matrix);
 void	ft_get_map_config(t_game *game, char **line);
-void	ft_check_valid_texture_path(t_game *game, char *path, char **config);
-void	ft_check_rgb(t_game *game, char *rgb, int *color);
-int		ft_is_numeric(char **matrix);
+void	ft_check_valid_texture_path(t_game *game, char **path);
+void	ft_check_rgb(t_game *game, char **rgb, int *color);
+void	ft_populate_path_array(t_game *game, char **line, int i);
 // utils/ft_exit.c
 void	ft_validation_exit(t_game *game, char *msg);
 
