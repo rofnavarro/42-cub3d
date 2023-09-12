@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+         #
+#    By: rferrero <rferrero@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/05 13:15:28 by rferrero          #+#    #+#              #
-#    Updated: 2023/09/12 12:55:05 by rferrero         ###   ########.fr        #
+#    Updated: 2023/09/12 16:54:42 by rferrero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRC						=				cub3d.c \
 															ft_map_validation.c \
 															ft_math.c \
 															ft_matrix.c \
+															ft_minimap.c \
 															ft_player.c \
 															ft_preparation.c \
 															ft_read_map.c \

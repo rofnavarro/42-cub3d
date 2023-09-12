@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: rferrero <rferrero@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 13:29:03 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/12 12:55:36 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/09/12 16:55:30 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,15 @@
 # define PI	3.14159265358979323846
 
 //	structs
+typedef struct s_screen
+{
+	void	*mlx_screen;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}	t_screen;
+
 typedef struct s_point
 {
 	float	x;
@@ -58,12 +67,20 @@ typedef struct s_map
 	char	**map;
 }	t_map;
 
+typedef struct s_minimap
+{
+	t_player	player;
+	t_map		map;
+	t_screen	mlx;
+}	t_minimap;
+
 typedef struct s_game
 {
 	void		*mlx;
 	void		*win;
 	t_player	player;
 	t_map		map;
+	t_minimap	minimap;
 }	t_game;
 
 //	utils/ft_draw.c
@@ -81,6 +98,9 @@ float	ft_distance(t_point a, t_point b, float angle);
 void	ft_free_matrix(char **matrix);
 int		ft_matrix_size(char **matrix);
 char	**ft_matrix_calloc(int size);
+//	utils/ft_minimap.c
+void	ft_screen_pixel_put(t_screen *screen, int x, int y, int color);
+int		ft_draw_minimap_handler(t_game *game);
 //	utils/ft_player.c
 void	ft_player_position(t_player *player, char **map);
 void	ft_player_to_zero(t_player *player, char **map);

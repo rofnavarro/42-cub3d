@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_draw.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: rferrero <rferrero@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 21:42:23 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/12 12:55:50 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/09/12 16:56:12 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../minimap.h"
 
 static int	render_background(t_game *game)
 {
@@ -49,6 +49,13 @@ static int render_player(t_game *game)
 
 int	ft_draw_handler(t_game *game)
 {
+	if (ft_draw_minimap_handler(game) == EXIT_FAILURE)
+	{
+		printf("Error\nFail to render player\n");
+		ft_free_matrix(game->map.config);
+		ft_free_matrix(game->map.map);
+		exit(EXIT_FAILURE);
+	}
 	if (render_player(game) == EXIT_FAILURE)
 	{
 		printf("Error\nFail to render player\n");
