@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:     #
 #                                                     +:+ +:+         +:+      #
-#    By: rferrero <rferrero@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: rinacio <rinacio@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/05 13:15:28 by rferrero          #+#    #+#              #
-#    Updated: 2023/09/12 16:54:42 by rferrero         ###   ########.fr        #
+#    Updated: 2023/09/12 16:26:16 by rinacio          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ RM						=				rm -rf
 
 SRC						=				cub3d.c \
 										$(addprefix utils/, ft_draw.c \
-															ft_finish.c \
+                              ft_config_validation.c \
+										 					ft_finish.c \
 															ft_map_validation.c \
 															ft_math.c \
 															ft_matrix.c \

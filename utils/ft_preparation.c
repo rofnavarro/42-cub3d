@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_preparation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rferrero <rferrero@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rinacio <rinacio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 13:42:49 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/11 17:38:08 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/09/11 16:51:24 by rinacio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	ft_preparation(t_game *game, int argc, char **argv)
 	game->map.map = ft_map_map(matrix);
 	game->map.config = ft_map_config(matrix);
 	ft_free_matrix(matrix);
+	ft_config_validation(game);
 	ft_map_validation(game);
 	game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx, WIN_W, WIN_H, \
