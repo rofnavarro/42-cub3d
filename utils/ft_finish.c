@@ -6,7 +6,7 @@
 /*   By: rinacio <rinacio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 15:16:39 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/12 17:43:44 by rinacio          ###   ########.fr       */
+/*   Updated: 2023/09/12 17:45:54 by rinacio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_finish(t_game *game)
 	ft_free_matrix(game->map.textures);
 	free(game->map.ceiling_color);
 	free(game->map.floor_color);
-	// mlx_loop_end(game->mlx);
+	mlx_loop_end(game->mlx);
 	mlx_destroy_window(game->mlx, game->win);
 	game->win = NULL;
 	mlx_destroy_display(game->mlx);
