@@ -6,11 +6,11 @@
 /*   By: rferrero <rferrero@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 21:42:23 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/12 16:56:12 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/09/12 17:09:52 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minimap.h"
+#include "../cub3d.h"
 
 static int	render_background(t_game *game)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rinacio <rinacio@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rferrero <rferrero@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 13:29:03 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/12 16:31:07 by rinacio          ###   ########.fr       */
+/*   Updated: 2023/09/12 17:08:29 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,10 +94,17 @@ typedef enum e_direction
 	WE
 }	t_direction;
 
+// utils/ft_config_validation.c
+void	ft_config_validation(t_game *game);
+void	ft_get_map_config(t_game *game, char **line);
+void	ft_check_valid_texture_path(t_game *game, char **path);
+void	ft_check_rgb(t_game *game, char **rgb, int *color);
+void	ft_populate_path_array(t_game *game, char **line, int i);
 //	utils/ft_draw.c
 int		ft_draw_handler(t_game *game);
 //	utils/ft_finish.c
 void	ft_finish(t_game *game);
+void	ft_validation_exit(t_game *game, char *msg);
 //	utils/ft_map_validation.c
 void	ft_check_characters(t_game *game);
 void	ft_map_is_closed(t_game *game);
@@ -124,13 +131,5 @@ void	ft_preparation(t_game *game, int argc, char **argv);
 char	*ft_read_map(t_game *game, char argv[]);
 char	**ft_map_config(char **matrix);
 char	**ft_map_map(char **matrix);
-// utils/ft_config_validation.c
-void	ft_config_validation(t_game *game);
-void	ft_get_map_config(t_game *game, char **line);
-void	ft_check_valid_texture_path(t_game *game, char **path);
-void	ft_check_rgb(t_game *game, char **rgb, int *color);
-void	ft_populate_path_array(t_game *game, char **line, int i);
-// utils/ft_exit.c
-void	ft_validation_exit(t_game *game, char *msg);
 
 #endif
