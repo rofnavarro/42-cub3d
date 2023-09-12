@@ -6,7 +6,7 @@
 #    By: rinacio <rinacio@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/05 13:15:28 by rferrero          #+#    #+#              #
-#    Updated: 2023/09/12 16:26:16 by rinacio          ###   ########.fr        #
+#    Updated: 2023/09/12 17:05:19 by rinacio          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRC						=				cub3d.c \
 										$(addprefix utils/, ft_draw.c \
                               ft_config_validation.c \
 										 					ft_finish.c \
+															ft_handle_keypress.c \
 															ft_map_validation.c \
 															ft_math.c \
 															ft_matrix.c \

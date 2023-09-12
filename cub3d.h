@@ -29,6 +29,9 @@
 # include <mlx.h>
 //	libft
 # include "./libft/libft.h"
+//	X11
+# include <X11/keysym.h>
+# include <X11/X.h>
 
 //	defines
 # define WIN_W	1024
@@ -103,7 +106,9 @@ void	ft_populate_path_array(t_game *game, char **line, int i);
 //	utils/ft_draw.c
 int		ft_draw_handler(t_game *game);
 //	utils/ft_finish.c
-void	ft_finish(t_game *game);
+int		ft_finish(t_game *game);
+// utils/ft_handle_keypress.c
+int		ft_handle_keypress(int keysym, t_game *game);
 void	ft_validation_exit(t_game *game, char *msg);
 //	utils/ft_map_validation.c
 void	ft_check_characters(t_game *game);

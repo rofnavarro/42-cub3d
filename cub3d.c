@@ -17,9 +17,9 @@ int	main(int argc, char **argv)
 	t_game	game;
 
 	ft_preparation(&game, argc, argv);
-
+	mlx_key_hook(game.win, &ft_handle_keypress, &game);
+	mlx_hook(game.win, DestroyNotify, NoEventMask, &ft_finish, &game);
 	mlx_loop_hook(game.mlx, &ft_draw_handler, &game);
-
 	mlx_loop(game.mlx);
 
 	ft_finish(&game);
