@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rferrero <rferrero@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rinacio <rinacio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 13:29:03 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/12 17:08:29 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/09/13 16:16:42 by rinacio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,14 @@
 # define PI	3.14159265358979323846
 
 //	structs
-typedef struct s_screen
+typedef struct s_img
 {
-	void	*mlx_screen;
+	void	*mlx_img;
 	char	*addr;
 	int		bpp;
 	int		line_len;
 	int		endian;
-}	t_screen;
+}	t_img;
 
 typedef struct s_point
 {
@@ -77,7 +77,7 @@ typedef struct s_minimap
 {
 	t_player	player;
 	t_map		map;
-	t_screen	mlx;
+	t_img		img;
 }	t_minimap;
 
 typedef struct s_game

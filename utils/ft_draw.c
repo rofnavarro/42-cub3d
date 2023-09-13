@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_draw.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rferrero <rferrero@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rinacio <rinacio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 21:42:23 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/12 17:09:52 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/09/13 16:27:09 by rinacio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,10 @@ static int	render_background(t_game *game)
     {
         j = 0;
         while (j < WIN_W)
-            mlx_pixel_put(game->mlx, game->win, j++, i, 0x000000);
+            ft_screen_pixel_put(game->minimap.img.mlx_img, j++, i, 0x000000);
         ++i;
     }
+    return (0);
 }
 
 static int render_player(t_game *game)
@@ -36,12 +37,12 @@ static int render_player(t_game *game)
 
     if (game->win == NULL)
         return (EXIT_FAILURE);
-    i = (game->player.position.y * 24);
-    while (i < ((game->player.position.y + 5) * 24))
+    i = (game->player.position.y);
+    while (i < ((game->player.position.y + 5)))
     {
-        j = (game->player.position.x * 24);
-        while (j < (game->player.position.x + 5) * 24)
-            mlx_pixel_put(game->mlx, game->win, j++, i, 0xFFFFFF);
+        j = (game->player.position.x);
+        while (j < (game->player.position.x + 5))
+            ft_screen_pixel_put(game->minimap.img.mlx_img, j++, i, 0xFFFFFF);
         ++i;
     }
     return (EXIT_SUCCESS);
@@ -49,13 +50,7 @@ static int render_player(t_game *game)
 
 int	ft_draw_handler(t_game *game)
 {
-	if (ft_draw_minimap_handler(game) == EXIT_FAILURE)
-	{
-		printf("Error\nFail to render player\n");
-		ft_free_matrix(game->map.config);
-		ft_free_matrix(game->map.map);
-		exit(EXIT_FAILURE);
-	}
+    game->minimap.img.mlx_img = mlx_new_image(game->mlx, WIN_W, WIN_H);
 	if (render_player(game) == EXIT_FAILURE)
 	{
 		printf("Error\nFail to render player\n");
@@ -70,5 +65,6 @@ int	ft_draw_handler(t_game *game)
 		ft_free_matrix(game->map.map);
 		exit(EXIT_FAILURE);
 	}
+	mlx_put_image_to_window(game->mlx, game->win, game->minimap.img.mlx_img, 0, 0);
 	return (EXIT_SUCCESS);
 }
