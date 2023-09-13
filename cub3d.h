@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rinacio <rinacio@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rferrero <rferrero@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 13:29:03 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/13 16:16:42 by rinacio          ###   ########.fr       */
+/*   Updated: 2023/09/13 16:55:47 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,20 +73,13 @@ typedef struct s_map
 	int		*ceiling_color;
 }	t_map;
 
-typedef struct s_minimap
-{
-	t_player	player;
-	t_map		map;
-	t_img		img;
-}	t_minimap;
-
 typedef struct s_game
 {
 	void		*mlx;
 	void		*win;
 	t_player	player;
 	t_map		map;
-	t_minimap	minimap;
+	t_img		img;
 }	t_game;
 
 typedef enum e_direction
@@ -104,6 +97,7 @@ void	ft_check_valid_texture_path(t_game *game, char **path);
 void	ft_check_rgb(t_game *game, char **rgb, int *color);
 void	ft_populate_path_array(t_game *game, char **line, int i);
 //	utils/ft_draw.c
+void	ft_img_pixel_put(t_img *img, int x, int y, int color);
 int		ft_draw_handler(t_game *game);
 //	utils/ft_finish.c
 int		ft_finish(t_game *game);
@@ -121,9 +115,6 @@ float	ft_distance(t_point a, t_point b, float angle);
 void	ft_free_matrix(char **matrix);
 int		ft_matrix_size(char **matrix);
 char	**ft_matrix_calloc(int size);
-//	utils/ft_minimap.c
-void	ft_screen_pixel_put(t_screen *screen, int x, int y, int color);
-int		ft_draw_minimap_handler(t_game *game);
 int		ft_is_numeric(char **matrix);
 //	utils/ft_player.c
 void	ft_player_position(t_player *player, char **map);

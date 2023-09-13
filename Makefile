@@ -23,14 +23,13 @@ LIBX					=				-lmlx -lX11 -lXext -lm
 RM						=				rm -rf
 
 SRC						=				cub3d.c \
-										$(addprefix utils/, ft_draw.c \
-                              ft_config_validation.c \
+										$(addprefix utils/, ft_config_validation.c \
+															ft_draw.c \
 										 					ft_finish.c \
 															ft_handle_keypress.c \
 															ft_map_validation.c \
 															ft_math.c \
 															ft_matrix.c \
-															ft_minimap.c \
 															ft_player.c \
 															ft_preparation.c \
 															ft_read_map.c \

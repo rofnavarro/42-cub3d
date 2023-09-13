@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: rferrero <rferrero@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 13:28:52 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/12 13:16:26 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/09/13 17:34:07 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	main(int argc, char **argv)
 	mlx_hook(game.win, DestroyNotify, NoEventMask, &ft_finish, &game);
 	mlx_loop_hook(game.mlx, &ft_draw_handler, &game);
 	mlx_loop(game.mlx);
-
 	ft_finish(&game);
 	return (EXIT_SUCCESS);
 }

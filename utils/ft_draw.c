@@ -3,68 +3,73 @@
 /*                                                        :::      ::::::::   */
 /*   ft_draw.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rinacio <rinacio@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rferrero <rferrero@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 21:42:23 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/13 16:27:09 by rinacio          ###   ########.fr       */
+/*   Updated: 2023/09/13 17:33:25 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-static int	render_background(t_game *game)
+void	ft_img_pixel_put(t_img *img, int x, int y, int color)
 {
-    int	i;
-    int	j;
+	char	*pixel;
+	int		i;
 
-    if (game->win == NULL)
-        return (EXIT_FAILURE);
-    i = 0;
-    while (i < WIN_H)
-    {
-        j = 0;
-        while (j < WIN_W)
-            ft_screen_pixel_put(game->minimap.img.mlx_img, j++, i, 0x000000);
-        ++i;
-    }
-    return (0);
+	i = img->bpp - 8;
+	pixel = (img->addr + ((y * img->line_len) + (x * (img->bpp / 8))));
+	while (i >= 0)
+	{
+		if (img->endian != 0)
+			*pixel++ = (color >> i) & 0xFF;
+		else
+			*pixel++ = (color >> (img->bpp - 8 - i)) & 0xFF;
+		i -= 8;
+	}
 }
 
-static int render_player(t_game *game)
+static int	render_background(t_game *game)
 {
-    int	i;
-    int j;
+	int	i;
+	int	j;
 
-    if (game->win == NULL)
-        return (EXIT_FAILURE);
-    i = (game->player.position.y);
-    while (i < ((game->player.position.y + 5)))
-    {
-        j = (game->player.position.x);
-        while (j < (game->player.position.x + 5))
-            ft_screen_pixel_put(game->minimap.img.mlx_img, j++, i, 0xFFFFFF);
-        ++i;
-    }
-    return (EXIT_SUCCESS);
+	i = 0;
+	while (i < WIN_H)
+	{
+		j = -1;
+		while (++j < WIN_W)
+			ft_img_pixel_put(game->img.mlx_img, j, i, 0xFF0000);
+		++i;
+	}
+	return (EXIT_SUCCESS);
+}
+
+static int	render_player(t_game *game)
+{
+	int	i;
+	int	j;
+
+	i = (game->player.position.y);
+	while (i < ((game->player.position.y + 5)))
+	{
+		j = (game->player.position.x) - 1;
+		while (++j < (game->player.position.x + 5))
+			ft_img_pixel_put(game->img.mlx_img, j, i, 0xFFFFFF);
+		++i;
+	}
+	return (EXIT_SUCCESS);
 }
 
 int	ft_draw_handler(t_game *game)
 {
-    game->minimap.img.mlx_img = mlx_new_image(game->mlx, WIN_W, WIN_H);
-	if (render_player(game) == EXIT_FAILURE)
-	{
-		printf("Error\nFail to render player\n");
-		ft_free_matrix(game->map.config);
-		ft_free_matrix(game->map.map);
-		exit(EXIT_FAILURE);
-	}
+	game->img.mlx_img = mlx_new_image(game->mlx, WIN_W, WIN_H);
+	game->img.addr = mlx_get_data_addr(game->img.mlx_img, &game->img.bpp, \
+									&game->img.line_len, &game->img.endian);
 	if (render_background(game) == EXIT_FAILURE)
-	{
-		printf("Error\nFail to render background\n");
-		ft_free_matrix(game->map.config);
-		ft_free_matrix(game->map.map);
-		exit(EXIT_FAILURE);
-	}
-	mlx_put_image_to_window(game->mlx, game->win, game->minimap.img.mlx_img, 0, 0);
+		ft_validation_exit(game, "Fail to render background\n");
+	// if (render_player(game) == EXIT_FAILURE)
+	// 	ft_validation_exit(game, "Fail to render player\n");
+	mlx_put_image_to_window(game->mlx, game->win, game->img.mlx_img, 0, 0);
 	return (EXIT_SUCCESS);
 }
