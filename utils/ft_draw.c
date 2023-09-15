@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_draw.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rferrero <rferrero@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 21:42:23 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/13 17:33:25 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/09/14 23:37:44 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_img_pixel_put(t_img *img, int x, int y, int color)
 	}
 }
 
-static int	render_background(t_game *game)
+static int	render_background(t_img *img)
 {
 	int	i;
 	int	j;
@@ -39,7 +39,7 @@ static int	render_background(t_game *game)
 	{
 		j = -1;
 		while (++j < WIN_W)
-			ft_img_pixel_put(game->img.mlx_img, j, i, 0xFF0000);
+			ft_img_pixel_put(img->mlx_img, j, i, 0xFF0000);
 		++i;
 	}
 	return (EXIT_SUCCESS);
@@ -63,13 +63,16 @@ static int	render_player(t_game *game)
 
 int	ft_draw_handler(t_game *game)
 {
-	game->img.mlx_img = mlx_new_image(game->mlx, WIN_W, WIN_H);
-	game->img.addr = mlx_get_data_addr(game->img.mlx_img, &game->img.bpp, \
-									&game->img.line_len, &game->img.endian);
-	if (render_background(game) == EXIT_FAILURE)
+	t_img	*img;
+
+	img = NULL;
+	img->mlx_img = mlx_new_image(game->mlx, WIN_W, WIN_H);
+	img->addr = mlx_get_data_addr(&img->mlx_img, &img->bpp, \
+									&img->line_len, &img->endian);
+	if (render_background(img) == EXIT_FAILURE)
 		ft_validation_exit(game, "Fail to render background\n");
 	// if (render_player(game) == EXIT_FAILURE)
 	// 	ft_validation_exit(game, "Fail to render player\n");
-	mlx_put_image_to_window(game->mlx, game->win, game->img.mlx_img, 0, 0);
+	mlx_put_image_to_window(game->mlx, game->win, img->mlx_img, 0, 0);
 	return (EXIT_SUCCESS);
 }
