@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rferrero <rferrero@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 13:29:03 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/13 16:55:47 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/09/16 22:15:41 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ typedef struct s_img
 {
 	void	*mlx_img;
 	char	*addr;
+	int		w;
+	int		h;
 	int		bpp;
 	int		line_len;
 	int		endian;
@@ -97,8 +99,9 @@ void	ft_check_valid_texture_path(t_game *game, char **path);
 void	ft_check_rgb(t_game *game, char **rgb, int *color);
 void	ft_populate_path_array(t_game *game, char **line, int i);
 //	utils/ft_draw.c
-void	ft_img_pixel_put(t_img *img, int x, int y, int color);
+void	ft_img_pix_put(t_img *img, int x, int y, int color);
 int		ft_draw_handler(t_game *game);
+t_img	*ft_new_image(t_game *game, int width, int height);
 //	utils/ft_finish.c
 int		ft_finish(t_game *game);
 // utils/ft_handle_keypress.c
