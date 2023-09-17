@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 13:29:03 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/16 22:15:41 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/09/16 23:37:45 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@
 # include <X11/X.h>
 
 //	defines
-# define WIN_W	1024
-# define WIN_H	512
+# define WIN_W	600
+# define WIN_H	400
 
-# define PI	3.14159265358979323846
+# define PI	3.141592653
 
 //	structs
 typedef struct s_img
