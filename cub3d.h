@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 13:29:03 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/17 03:03:56 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/09/17 15:41:37 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@
 //	defines
 # define WIN_W 1600
 # define WIN_H 900
+
+# define SIZE 10
 
 # define PI 3.141592653
 
@@ -101,7 +103,11 @@ typedef struct s_rect
 	int	color;
 }	t_rect;
 
-// utils/ft_config_validation.c
+//	utils/ft_class.c
+void	render_background(t_img *img, int color);
+void	render_minimap(t_game *game);
+void	render_player(t_game *game);
+//	utils/ft_config_validation.c
 void	ft_config_validation(t_game *game);
 void	ft_get_map_config(t_game *game, char **line);
 void	ft_check_valid_texture_path(t_game *game, char **path);
@@ -109,11 +115,11 @@ void	ft_check_rgb(t_game *game, char **rgb, int *color);
 void	ft_populate_path_array(t_game *game, char **line, int i);
 //	utils/ft_draw.c
 void	ft_img_pix_put(t_img *img, int x, int y, int color);
+void	render_rect(t_img *img, t_rect rect);
 int		ft_draw_handler(t_game *game);
-t_img	*ft_new_image(t_game *game, int width, int height);
 //	utils/ft_finish.c
 int		ft_finish(t_game *game);
-// utils/ft_handle_keypress.c
+//	utils/ft_handle_keypress.c
 int		ft_handle_keypress(int keysym, t_game *game);
 void	ft_validation_exit(t_game *game, char *msg);
 //	utils/ft_map_validation.c
