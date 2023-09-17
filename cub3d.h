@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 13:29:03 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/16 23:37:45 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/09/17 03:03:56 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@
 # include <X11/X.h>
 
 //	defines
-# define WIN_W	600
-# define WIN_H	400
+# define WIN_W 1600
+# define WIN_H 900
 
-# define PI	3.141592653
+# define PI 3.141592653
 
 //	structs
 typedef struct s_img
@@ -92,6 +92,15 @@ typedef enum e_direction
 	WE
 }	t_direction;
 
+typedef struct s_rect
+{
+	int	x;
+	int	y;
+	int	width;
+	int	height;
+	int	color;
+}	t_rect;
+
 // utils/ft_config_validation.c
 void	ft_config_validation(t_game *game);
 void	ft_get_map_config(t_game *game, char **line);
@@ -119,6 +128,7 @@ void	ft_free_matrix(char **matrix);
 int		ft_matrix_size(char **matrix);
 char	**ft_matrix_calloc(int size);
 int		ft_is_numeric(char **matrix);
+int		ft_matrix_max_width(char **matrix);
 //	utils/ft_player.c
 void	ft_player_position(t_player *player, char **map);
 void	ft_player_to_zero(t_player *player, char **map);
