@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 15:36:59 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/17 15:40:36 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/09/17 20:55:04 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ void	render_minimap(t_game *game)
 	while (game->map.map[i])
 	{
 		j = 0;
+		rect.y = (i * SIZE) + 1;
 		while (game->map.map[i][j])
 		{
-			rect.y = (i * rect.height) + 2;
-			rect.x = (j * rect.width) + 2;
+			rect.x = (j * SIZE) + 1;
 			if (game->map.map[i][j] == ' ')
 				rect.color = 0x000000;
 			else if (game->map.map[i][j] == '1')

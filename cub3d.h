@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 13:29:03 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/17 15:41:37 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/09/17 20:57:12 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ typedef struct s_map
 	char	**textures;
 	int		*floor_color;
 	int		*ceiling_color;
+	int		toggle;
 }	t_map;
 
 typedef struct s_game

@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 21:42:23 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/17 15:41:56 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/09/17 20:59:16 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,11 @@ void	render_rect(t_img *img, t_rect rect)
 int	ft_draw_handler(t_game *game)
 {
 	render_background(&game->img, 0x000000);
-	render_minimap(game);
-	render_player(game);
+	if (game->map.toggle == 0)
+	{
+		render_minimap(game);
+		render_player(game);
+	}
 	mlx_put_image_to_window(game->mlx, game->win, game->img.mlx_img, 0, 0);
 	return (EXIT_SUCCESS);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_preparation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rinacio <rinacio@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 13:42:49 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/12 16:53:24 by rinacio          ###   ########.fr       */
+/*   Updated: 2023/09/17 21:00:02 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	ft_map_validation(t_game *game)
 	ft_player_to_zero(&game->player, game->map.map);
 	ft_map_is_closed(game);
 	ft_player_to_direction(&game->player, game->map.map);
+	game->map.toggle = 0;
 }
 
 void	ft_preparation(t_game *game, int argc, char **argv)
