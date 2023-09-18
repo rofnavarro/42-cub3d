@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_class.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: rferrero <rferrero@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 15:36:59 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/17 20:55:04 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/09/18 15:18:45 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ void	render_minimap(t_game *game)
 	while (game->map.map[i])
 	{
 		j = 0;
-		rect.y = (i * SIZE) + 1;
+		rect.y = i * (SIZE + 1);
 		while (game->map.map[i][j])
 		{
-			rect.x = (j * SIZE) + 1;
+			rect.x = j * (SIZE + 1);
 			if (game->map.map[i][j] == ' ')
 				rect.color = 0x000000;
 			else if (game->map.map[i][j] == '1')
@@ -65,7 +65,7 @@ void	render_player(t_game *game)
 	player.height = 4;
 	player.width = 4;
 	player.color = 0x0000FF;
-	player.x = (game->player.position.x * SIZE) + (SIZE / 2) - 1;
-	player.y = (game->player.position.y * SIZE) + (SIZE / 2) - 1;
+	player.x = (game->player.position.x * (SIZE + 1)) + (SIZE / 2) - 2;
+	player.y = (game->player.position.y * (SIZE + 1)) + (SIZE / 2) - 2;
 	render_rect(&game->img, player);
 }
