@@ -43,6 +43,9 @@
 # define PI_2 1.57079632679489661923
 # define PI_4 0.78539816339744830962
 
+# define ROT_SPEED 0.01F
+# define SPEED 0.04F
+
 //	structs
 typedef struct s_img
 {
@@ -97,6 +100,14 @@ typedef enum e_direction
 	WE
 }	t_direction;
 
+typedef enum e_key
+{
+	UP,
+	DOWN,
+	LEFT,
+	RIGHT
+}	t_key;
+
 typedef struct s_rect
 {
 	t_point	position;
@@ -121,9 +132,10 @@ void	render_line(t_game *game, t_point start, t_point end, int color);
 int		ft_draw_handler(t_game *game);
 //	utils/ft_finish.c
 int		ft_finish(t_game *game);
+void	ft_validation_exit(t_game *game, char *msg);
 //	utils/ft_handle_keypress.c
 int		ft_handle_keypress(int keysym, t_game *game);
-void	ft_validation_exit(t_game *game, char *msg);
+int		ft_handle_keyrelease(int keysym, t_game *game);
 //	utils/ft_map_validation.c
 void	ft_check_characters(t_game *game);
 void	ft_map_is_closed(t_game *game);
@@ -137,6 +149,10 @@ int		ft_matrix_size(char **matrix);
 char	**ft_matrix_calloc(int size);
 int		ft_is_numeric(char **matrix);
 int		ft_matrix_max_width(char **matrix);
+//	utils/ft_movement.c
+void	ft_move_player(t_game *game, int keysym);
+void	ft_rotate_player(t_game *game, int keysym);
+void	ft_update_player_position(t_game *game, float angle);
 //	utils/ft_player.c
 void	ft_player_position(t_player *player, char **map);
 void	ft_player_to_zero(t_player *player, char **map);
