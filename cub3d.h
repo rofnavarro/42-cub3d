@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: rferrero <rferrero@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 13:29:03 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/17 20:57:12 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/09/18 15:42:48 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,11 @@
 # define WIN_W 1600
 # define WIN_H 900
 
-# define SIZE 10
+# define SIZE_MINIMAP 10
 
-# define PI 3.141592653
+# define PI 3.14159265358979323846
+# define PI_2 1.57079632679489661923
+# define PI_4 0.78539816339744830962
 
 //	structs
 typedef struct s_img
