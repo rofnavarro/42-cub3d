@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rinacio <rinacio@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rferrero <rferrero@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 13:29:03 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/18 18:07:48 by rinacio          ###   ########.fr       */
+/*   Updated: 2023/09/18 17:34:50 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,11 @@
 # define WIN_W 1600
 # define WIN_H 900
 
-# define SIZE 10
+# define SIZE_MINIMAP 10
 
-# define PI 3.141592653
+# define PI 3.14159265358979323846
+# define PI_2 1.57079632679489661923
+# define PI_4 0.78539816339744830962
 
 # define ROT_SPEED 0.01F
 # define SPEED 0.04F
@@ -108,15 +110,13 @@ typedef enum e_key
 
 typedef struct s_rect
 {
-	int	x;
-	int	y;
-	int	width;
-	int	height;
-	int	color;
+	t_point	position;
+	int		width;
+	int		height;
+	int		color;
 }	t_rect;
 
 //	utils/ft_class.c
-void	render_background(t_img *img, int color);
 void	render_minimap(t_game *game);
 void	render_player(t_game *game);
 //	utils/ft_config_validation.c
@@ -128,6 +128,7 @@ void	ft_populate_path_array(t_game *game, char **line, int i);
 //	utils/ft_draw.c
 void	ft_img_pix_put(t_img *img, int x, int y, int color);
 void	render_rect(t_img *img, t_rect rect);
+void	render_line(t_game *game, t_point start, t_point end, int color);
 int		ft_draw_handler(t_game *game);
 //	utils/ft_finish.c
 int		ft_finish(t_game *game);
