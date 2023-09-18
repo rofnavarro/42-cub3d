@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: rinacio <rinacio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 13:29:03 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/17 20:57:12 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/09/18 18:07:48 by rinacio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@
 # define SIZE 10
 
 # define PI 3.141592653
+
+# define ROT_SPEED 0.01F
+# define SPEED 0.04F
 
 //	structs
 typedef struct s_img
@@ -95,6 +98,14 @@ typedef enum e_direction
 	WE
 }	t_direction;
 
+typedef enum e_key
+{
+	UP,
+	DOWN,
+	LEFT,
+	RIGHT
+}	t_key;
+
 typedef struct s_rect
 {
 	int	x;
@@ -120,9 +131,10 @@ void	render_rect(t_img *img, t_rect rect);
 int		ft_draw_handler(t_game *game);
 //	utils/ft_finish.c
 int		ft_finish(t_game *game);
+void	ft_validation_exit(t_game *game, char *msg);
 //	utils/ft_handle_keypress.c
 int		ft_handle_keypress(int keysym, t_game *game);
-void	ft_validation_exit(t_game *game, char *msg);
+int		ft_handle_keyrelease(int keysym, t_game *game);
 //	utils/ft_map_validation.c
 void	ft_check_characters(t_game *game);
 void	ft_map_is_closed(t_game *game);
@@ -136,6 +148,10 @@ int		ft_matrix_size(char **matrix);
 char	**ft_matrix_calloc(int size);
 int		ft_is_numeric(char **matrix);
 int		ft_matrix_max_width(char **matrix);
+//	utils/ft_movement.c
+void	ft_move_player(t_game *game, int keysym);
+void	ft_rotate_player(t_game *game, int keysym);
+void	ft_update_player_position(t_game *game, float angle);
 //	utils/ft_player.c
 void	ft_player_position(t_player *player, char **map);
 void	ft_player_to_zero(t_player *player, char **map);
