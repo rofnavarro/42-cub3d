@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_finish.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rinacio <rinacio@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 15:16:39 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/12 17:45:54 by rinacio          ###   ########.fr       */
+/*   Updated: 2023/09/16 22:16:48 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	ft_finish(t_game *game)
 {
+	mlx_destroy_image(game->mlx, game->img.mlx_img);
 	ft_free_matrix(game->map.config);
 	ft_free_matrix(game->map.map);
 	ft_free_matrix(game->map.textures);

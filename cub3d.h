@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rferrero <rferrero@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 13:29:03 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/12 17:08:29 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/09/17 20:57:12 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,24 @@
 # include <X11/X.h>
 
 //	defines
-# define WIN_W	1024
-# define WIN_H	512
+# define WIN_W 1600
+# define WIN_H 900
 
-# define PI	3.14159265358979323846
+# define SIZE 10
+
+# define PI 3.141592653
 
 //	structs
-typedef struct s_screen
+typedef struct s_img
 {
-	void	*mlx_screen;
+	void	*mlx_img;
 	char	*addr;
+	int		w;
+	int		h;
 	int		bpp;
 	int		line_len;
 	int		endian;
-}	t_screen;
+}	t_img;
 
 typedef struct s_point
 {
@@ -71,14 +75,8 @@ typedef struct s_map
 	char	**textures;
 	int		*floor_color;
 	int		*ceiling_color;
+	int		toggle;
 }	t_map;
-
-typedef struct s_minimap
-{
-	t_player	player;
-	t_map		map;
-	t_screen	mlx;
-}	t_minimap;
 
 typedef struct s_game
 {
@@ -86,7 +84,7 @@ typedef struct s_game
 	void		*win;
 	t_player	player;
 	t_map		map;
-	t_minimap	minimap;
+	t_img		img;
 }	t_game;
 
 typedef enum e_direction
@@ -97,17 +95,32 @@ typedef enum e_direction
 	WE
 }	t_direction;
 
-// utils/ft_config_validation.c
+typedef struct s_rect
+{
+	int	x;
+	int	y;
+	int	width;
+	int	height;
+	int	color;
+}	t_rect;
+
+//	utils/ft_class.c
+void	render_background(t_img *img, int color);
+void	render_minimap(t_game *game);
+void	render_player(t_game *game);
+//	utils/ft_config_validation.c
 void	ft_config_validation(t_game *game);
 void	ft_get_map_config(t_game *game, char **line);
 void	ft_check_valid_texture_path(t_game *game, char **path);
 void	ft_check_rgb(t_game *game, char **rgb, int *color);
 void	ft_populate_path_array(t_game *game, char **line, int i);
 //	utils/ft_draw.c
+void	ft_img_pix_put(t_img *img, int x, int y, int color);
+void	render_rect(t_img *img, t_rect rect);
 int		ft_draw_handler(t_game *game);
 //	utils/ft_finish.c
 int		ft_finish(t_game *game);
-// utils/ft_handle_keypress.c
+//	utils/ft_handle_keypress.c
 int		ft_handle_keypress(int keysym, t_game *game);
 void	ft_validation_exit(t_game *game, char *msg);
 //	utils/ft_map_validation.c
@@ -121,10 +134,8 @@ float	ft_distance(t_point a, t_point b, float angle);
 void	ft_free_matrix(char **matrix);
 int		ft_matrix_size(char **matrix);
 char	**ft_matrix_calloc(int size);
-//	utils/ft_minimap.c
-void	ft_screen_pixel_put(t_screen *screen, int x, int y, int color);
-int		ft_draw_minimap_handler(t_game *game);
 int		ft_is_numeric(char **matrix);
+int		ft_matrix_max_width(char **matrix);
 //	utils/ft_player.c
 void	ft_player_position(t_player *player, char **map);
 void	ft_player_to_zero(t_player *player, char **map);

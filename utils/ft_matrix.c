@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_matrix.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rinacio <rinacio@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 21:29:44 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/12 16:30:59 by rinacio          ###   ########.fr       */
+/*   Updated: 2023/09/17 02:37:54 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,27 @@ int	ft_is_numeric(char **matrix)
 		while (matrix[i][++j])
 		{
 			if (!ft_isdigit(matrix[i][j]))
-				return (0);
+				return (EXIT_SUCCESS);
 		}
 	}
-	return (1);
+	return (EXIT_FAILURE);
+}
+
+int	ft_matrix_max_width(char **matrix)
+{
+	int	i;
+	int	j;
+	int	ret;
+
+	i = -1;
+	ret = 0;
+	while (matrix[++i])
+	{
+		j = 0;
+		while (matrix[i][j])
+			j++;
+		if (ret < j)
+			ret = j;
+	}
+	return (ret);
 }
