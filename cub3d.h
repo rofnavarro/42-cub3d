@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 13:29:03 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/18 15:42:48 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/09/18 17:34:50 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,15 +99,13 @@ typedef enum e_direction
 
 typedef struct s_rect
 {
-	int	x;
-	int	y;
-	int	width;
-	int	height;
-	int	color;
+	t_point	position;
+	int		width;
+	int		height;
+	int		color;
 }	t_rect;
 
 //	utils/ft_class.c
-void	render_background(t_img *img, int color);
 void	render_minimap(t_game *game);
 void	render_player(t_game *game);
 //	utils/ft_config_validation.c
@@ -119,6 +117,7 @@ void	ft_populate_path_array(t_game *game, char **line, int i);
 //	utils/ft_draw.c
 void	ft_img_pix_put(t_img *img, int x, int y, int color);
 void	render_rect(t_img *img, t_rect rect);
+void	render_line(t_game *game, t_point start, t_point end, int color);
 int		ft_draw_handler(t_game *game);
 //	utils/ft_finish.c
 int		ft_finish(t_game *game);
