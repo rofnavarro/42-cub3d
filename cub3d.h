@@ -6,7 +6,7 @@
 /*   By: rinacio <rinacio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 13:29:03 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/18 18:27:46 by rinacio          ###   ########.fr       */
+/*   Updated: 2023/09/19 14:59:06 by rinacio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,5 +164,8 @@ void	ft_preparation(t_game *game, int argc, char **argv);
 char	*ft_read_map(t_game *game, char argv[]);
 char	**ft_map_config(char **matrix);
 char	**ft_map_map(char **matrix);
+// utils/ft_draw_background.c
+int		ft_convert_rgb(int *rgb);
+void	ft_draw_background(t_game *game);
 
 #endif
