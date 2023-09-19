@@ -36,6 +36,7 @@ SRC						=				cub3d.c \
 															ft_player.c \
 															ft_preparation.c \
 															ft_read_map.c \
+															ft_textures.c \
 															)
 
 OBJ						=				$(SRC:%.c=%.o)
