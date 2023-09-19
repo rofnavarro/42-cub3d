@@ -6,7 +6,7 @@
 /*   By: rinacio <rinacio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 16:41:48 by rinacio           #+#    #+#             */
-/*   Updated: 2023/09/12 16:30:55 by rinacio          ###   ########.fr       */
+/*   Updated: 2023/09/19 17:47:15 by rinacio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,14 @@ void	ft_check_valid_texture_path(t_game *game, char **path)
 {
 	int		fd;
 	int		i;
+	char	*extension;
 
 	i = -1;
 	while (path[++i])
 	{
+		extension = ft_strnstr(path[i], ".xpm", ft_strlen(path[i]));
+		if (!extension || ft_strlen(extension) != 4)
+			ft_validation_exit(game, "Invalid texture extension\n");
 		fd = open(path[i], O_RDONLY);
 		if (fd < 0)
 			ft_validation_exit(game, "Invalid texture path\n");

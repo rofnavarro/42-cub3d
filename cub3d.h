@@ -6,7 +6,7 @@
 /*   By: rinacio <rinacio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 13:29:03 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/19 14:59:06 by rinacio          ###   ########.fr       */
+/*   Updated: 2023/09/19 17:00:25 by rinacio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ typedef struct s_map
 	int		*floor_color;
 	int		*ceiling_color;
 	int		toggle;
+	t_img	walls[4];
 }	t_map;
 
 typedef struct s_game
@@ -167,5 +168,7 @@ char	**ft_map_map(char **matrix);
 // utils/ft_draw_background.c
 int		ft_convert_rgb(int *rgb);
 void	ft_draw_background(t_game *game);
+//utils/ft_textures.c
+void	load_textures(t_game *game);
 
 #endif

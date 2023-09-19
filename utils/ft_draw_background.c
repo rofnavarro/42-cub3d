@@ -6,7 +6,7 @@
 /*   By: rinacio <rinacio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 14:58:23 by rinacio           #+#    #+#             */
-/*   Updated: 2023/09/19 14:59:59 by rinacio          ###   ########.fr       */
+/*   Updated: 2023/09/19 16:49:38 by rinacio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,5 @@ void	ft_draw_background(t_game *game)
 			ft_img_pix_put(&game->img, width, height, color);
 		}
 	}
+	load_textures(game);
 }

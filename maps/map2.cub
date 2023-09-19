@@ -1,7 +1,7 @@
-SO ./texture/teste1
-NO ./texture/teste3
-EA ./texture/teste2
-WE ./texture/teste4
+SO ./texture/texture1.xpm
+NO ./texture/texture2.xpm
+EA ./texture/texture3.xpm
+WE ./texture/texture4.xpm
 
 F 220,100,0
 C 255,30,0
