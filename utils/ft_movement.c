@@ -6,7 +6,7 @@
 /*   By: rinacio <rinacio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 16:32:56 by rinacio           #+#    #+#             */
-/*   Updated: 2023/09/18 18:56:25 by rinacio          ###   ########.fr       */
+/*   Updated: 2023/09/19 15:00:54 by rinacio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_move_player(t_game *game, int keysym)
 	else if (keysym == XK_W || keysym == XK_w)
 		ft_update_player_position(game, 0);
 	else if (keysym == XK_D || keysym == XK_d)
-		ft_update_player_position(game, - PI / 2);
+		ft_update_player_position(game, -PI / 2);
 	else if (keysym == XK_S || keysym == XK_s)
 		ft_update_player_position(game, PI);
 }
