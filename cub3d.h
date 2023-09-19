@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rferrero <rferrero@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 13:29:03 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/18 18:05:58 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/09/19 17:56:03 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@
 # define WIN_W 1600
 # define WIN_H 900
 
-# define MINIMAP_SIZE 30
+# define MINIMAP_SIZE 32
 # define PLAYER_SIZE 8
-# define LINE_SIZE 5
+# define LINE_SIZE 8
 
 # define PI 3.14159265358979323846
 # define PI_2 1.57079632679489661923
@@ -63,13 +63,26 @@ typedef struct s_point
 	float	y;
 }	t_point;
 
-typedef struct s_player
+typedef struct s_rays
+{
+	int		ray;
+	int		depth;
+	int		mp;
+	float	angle;
+	float	dist_h;
+	float	dist_v;
+	t_point	map;
+	t_point	start;
+	t_point	end;
+}	t_rays;
+
+typedef struct s_rect
 {
 	t_point	position;
-	t_point	displacement;
-	float	angle;
-	char	direction;
-}	t_player;
+	int		width;
+	int		height;
+	int		color;
+}	t_rect;
 
 typedef struct s_map
 {
@@ -82,6 +95,14 @@ typedef struct s_map
 	int		toggle;
 }	t_map;
 
+typedef struct s_player
+{
+	t_point	position;
+	t_point	displacement;
+	float	angle;
+	char	direction;
+}	t_player;
+
 typedef struct s_game
 {
 	void		*mlx;
@@ -91,6 +112,7 @@ typedef struct s_game
 	t_img		img;
 }	t_game;
 
+//	enums
 typedef enum e_direction
 {
 	NO,
@@ -98,14 +120,6 @@ typedef enum e_direction
 	EA,
 	WE
 }	t_direction;
-
-typedef struct s_rect
-{
-	t_point	position;
-	int		width;
-	int		height;
-	int		color;
-}	t_rect;
 
 //	utils/ft_class.c
 void	render_minimap(t_game *game);
@@ -146,6 +160,8 @@ void	ft_player_to_direction(t_player *player, char **map);
 //	utils/ft_preparation.c
 void	ft_map_validation(t_game *game);
 void	ft_preparation(t_game *game, int argc, char **argv);
+//	utils/ft_rays_check.c
+void	check_horizontal(t_game *game);
 //	utils/ft_read_map.c
 char	*ft_read_map(t_game *game, char argv[]);
 char	**ft_map_config(char **matrix);

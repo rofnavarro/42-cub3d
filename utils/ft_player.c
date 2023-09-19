@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_player.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rferrero <rferrero@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 20:59:41 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/18 16:42:23 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/09/19 16:52:57 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static void	ft_set_direction_player(t_player *player)
 		player->angle = (3 * PI) / 2;
 	else if (player->direction == 'E')
 		player->angle = 0;
+	player->displacement.x = cos(player->angle) * 5;
+	player->displacement.y = -sin(player->angle) * 5;
 }
 
 void	ft_player_position(t_player *player, char **map)
