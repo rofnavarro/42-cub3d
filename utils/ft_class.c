@@ -6,13 +6,13 @@
 /*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 15:36:59 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/19 17:06:51 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/09/20 13:30:54 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-static void	render_direction(t_game *game, char c)
+static void	render_direction(t_game *game)
 {
 	t_point	direction;
 	t_point	start;
@@ -21,8 +21,10 @@ static void	render_direction(t_game *game, char c)
 											(MINIMAP_SIZE / 2);
 	start.y = (game->player.position.y * (MINIMAP_SIZE)) + \
 											(MINIMAP_SIZE / 2);
-	direction.x = (start.x + (game->player.displacement.x * 2));
-	direction.y = (start.y + (game->player.displacement.y * 2));
+	direction.x = (start.x + (game->player.displacement.x * \
+								cos(game->player.angle)));
+	direction.y = (start.y + (game->player.displacement.y * \
+								-sin(game->player.angle)));
 	render_line(game, start, direction, 0x000000);
 }
 
@@ -68,7 +70,6 @@ void	render_player(t_game *game)
 	int		i;
 	int		j;
 	t_rect	player;
-	t_point	minimap;
 
 	player.height = PLAYER_SIZE + 1;
 	player.width = PLAYER_SIZE + 1;
@@ -77,8 +78,6 @@ void	render_player(t_game *game)
 						((MINIMAP_SIZE / 2) - (PLAYER_SIZE / 2));
 	player.position.y = (game->player.position.y * MINIMAP_SIZE) + \
 						((MINIMAP_SIZE / 2) - (PLAYER_SIZE / 2));
-	minimap.x = player.position.x;
-	minimap.y = player.position.y;
 	render_rect(&game->img, player);
-	render_direction(game, game->player.direction);
+	render_direction(game);
 }

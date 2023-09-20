@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 13:29:03 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/19 17:56:03 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/09/20 12:23:53 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@
 # define PI_2 1.57079632679489661923
 # define PI_4 0.78539816339744830962
 
-# define ROT_SPEED 0.01F
+# define ROT_SPEED 0.05F
 # define SPEED 0.04F
 
 //	structs
