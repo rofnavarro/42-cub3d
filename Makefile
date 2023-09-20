@@ -35,6 +35,7 @@ SRC						=				cub3d.c \
 															ft_movement.c \
 															ft_player.c \
 															ft_preparation.c \
+															ft_rays_check.c \
 															ft_read_map.c \
 															ft_textures.c \
 															)
