@@ -26,15 +26,18 @@ SRC						=				cub3d.c \
 										$(addprefix utils/, ft_class.c \
 															ft_config_validation.c \
 															ft_draw.c \
+															ft_draw_background.c \
 										 					ft_finish.c \
 															ft_handle_keypress.c \
 															ft_map_validation.c \
 															ft_math.c \
 															ft_matrix.c \
+															ft_movement.c \
 															ft_player.c \
 															ft_preparation.c \
 															ft_rays_check.c \
 															ft_read_map.c \
+															ft_textures.c \
 															)
 
 OBJ						=				$(SRC:%.c=%.o)

@@ -12,21 +12,6 @@
 
 #include "../cub3d.h"
 
-static void	render_background(t_img *img, int color)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < WIN_H)
-	{
-		j = 0;
-		while (j < WIN_W)
-			ft_img_pix_put(img, j++, i, color);
-		i++;
-	}
-}
-
 void	ft_img_pix_put(t_img *img, int x, int y, int color)
 {
 	char	*pixel;
@@ -77,7 +62,7 @@ void	render_line(t_game *game, t_point start, t_point end, int color)
 
 int	ft_draw_handler(t_game *game)
 {
-	render_background(&game->img, 0x000000);
+	ft_draw_background(game);
 	if (game->map.toggle == 0)
 	{
 		render_minimap(game);
