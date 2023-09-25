@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 13:29:03 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/19 17:56:03 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/09/25 09:40:16 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,15 @@
 # define WIN_W 1600
 # define WIN_H 900
 
-# define MINIMAP_SIZE 32
-# define PLAYER_SIZE 8
+# define MINIMAP_SIZE 16
+# define PLAYER_SIZE (log2(MINIMAP_SIZE) * 2)
 # define LINE_SIZE 8
 
 # define PI 3.14159265358979323846
 # define PI_2 1.57079632679489661923
 # define PI_4 0.78539816339744830962
 
-# define ROT_SPEED 0.01F
+# define ROT_SPEED 0.05F
 # define SPEED 0.04F
 
 //	structs
@@ -134,59 +134,58 @@ typedef enum e_key
 }	t_key;
 
 //	utils/ft_class.c
-void	render_minimap(t_game *game);
-void	render_player(t_game *game);
+void		render_minimap(t_game *game);
+void		render_player(t_game *game);
 //	utils/ft_config_validation.c
-void	ft_config_validation(t_game *game);
-void	ft_get_map_config(t_game *game, char **line);
-void	ft_check_valid_texture_path(t_game *game, char **path);
-void	ft_check_rgb(t_game *game, char **rgb, int *color);
-void	ft_populate_path_array(t_game *game, char **line, int i);
+void		ft_config_validation(t_game *game);
+void		ft_get_map_config(t_game *game, char **line);
+void		ft_check_valid_texture_path(t_game *game, char **path);
+void		ft_check_rgb(t_game *game, char **rgb, int *color);
+void		ft_populate_path_array(t_game *game, char **line, int i);
 //	utils/ft_draw.c
-void	ft_img_pix_put(t_img *img, int x, int y, int color);
-void	render_rect(t_img *img, t_rect rect);
-void	render_line(t_game *game, t_point start, t_point end, int color);
-int		ft_draw_handler(t_game *game);
+void		ft_img_pix_put(t_img *img, int x, int y, int color);
+void		render_rect(t_img *img, t_rect rect);
+void		render_line(t_game *game, t_point start, t_point end, int color);
+int			ft_draw_handler(t_game *game);
 //	utils/ft_finish.c
-int		ft_finish(t_game *game);
-void	ft_validation_exit(t_game *game, char *msg);
+int			ft_finish(t_game *game);
+void		ft_validation_exit(t_game *game, char *msg);
 //	utils/ft_handle_keypress.c
-int		ft_handle_keypress(int keysym, t_game *game);
-int		ft_handle_keyrelease(int keysym, t_game *game);
+int			ft_handle_keypress(int keysym, t_game *game);
+int			ft_handle_keyrelease(int keysym, t_game *game);
 //	utils/ft_map_validation.c
-void	ft_check_characters(t_game *game);
-void	ft_map_is_closed(t_game *game);
+void		ft_check_characters(t_game *game);
+void		ft_map_is_closed(t_game *game);
 //	utils/ft_math.c
-float	ft_deg_to_rad(int deg);
-int		ft_fix_angle(int angle);
-float	ft_distance(t_point a, t_point b, float angle);
+float		ft_distance(t_point a, t_point b, float angle);
+long double	ft_log_2(const long double x);
 //	utils/ft_matrix.c
-void	ft_free_matrix(char **matrix);
-int		ft_matrix_size(char **matrix);
-char	**ft_matrix_calloc(int size);
-int		ft_is_numeric(char **matrix);
-int		ft_matrix_max_width(char **matrix);
+void		ft_free_matrix(char **matrix);
+int			ft_matrix_size(char **matrix);
+char		**ft_matrix_calloc(int size);
+int			ft_is_numeric(char **matrix);
+int			ft_matrix_max_width(char **matrix);
 //	utils/ft_movement.c
-void	ft_move_player(t_game *game, int keysym);
-void	ft_rotate_player(t_game *game, int keysym);
-void	ft_update_player_position(t_game *game, float angle);
+void		ft_move_player(t_game *game, int keysym);
+void		ft_rotate_player(t_game *game, int keysym);
+void		ft_update_player_position(t_game *game, float angle);
 //	utils/ft_player.c
-void	ft_player_position(t_player *player, char **map);
-void	ft_player_to_zero(t_player *player, char **map);
-void	ft_player_to_direction(t_player *player, char **map);
+void		ft_player_position(t_player *player, char **map);
+void		ft_player_to_zero(t_player *player, char **map);
+void		ft_player_to_direction(t_player *player, char **map);
 //	utils/ft_preparation.c
-void	ft_map_validation(t_game *game);
-void	ft_preparation(t_game *game, int argc, char **argv);
+void		ft_map_validation(t_game *game);
+void		ft_preparation(t_game *game, int argc, char **argv);
 //	utils/ft_rays_check.c
-void	check_horizontal(t_game *game);
+void		check_horizontal(t_game *game);
 //	utils/ft_read_map.c
-char	*ft_read_map(t_game *game, char argv[]);
-char	**ft_map_config(char **matrix);
-char	**ft_map_map(char **matrix);
+char		*ft_read_map(t_game *game, char argv[]);
+char		**ft_map_config(char **matrix);
+char		**ft_map_map(char **matrix);
 // utils/ft_draw_background.c
-int		ft_convert_rgb(int *rgb);
-void	ft_draw_background(t_game *game);
+int			ft_convert_rgb(int *rgb);
+void		ft_draw_background(t_game *game);
 //utils/ft_textures.c
-void	load_textures(t_game *game);
+void		load_textures(t_game *game);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_handle_keypress.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rinacio <rinacio@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 16:54:23 by rinacio           #+#    #+#             */
-/*   Updated: 2023/09/18 17:53:04 by rinacio          ###   ########.fr       */
+/*   Updated: 2023/09/24 18:20:44 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_handle_keypress(int keysym, t_game *game)
 		ft_move_player(game, keysym);
 	else if (keysym == XK_Left || keysym == XK_Right)
 		ft_rotate_player(game, keysym);
-	else if (keysym == XK_M || keysym == XK_m)
+	else if (keysym == XK_Tab)
 		game->map.toggle = (game->map.toggle + 1) % 2;
 	if (keysym == XK_Escape)
 		ft_finish(game);
