@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 16:32:56 by rinacio           #+#    #+#             */
-/*   Updated: 2023/09/20 13:30:17 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/09/24 21:45:24 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@ void	ft_rotate_player(t_game *game, int keysym)
 		game->player.angle -= ROT_SPEED;
 	else if (keysym == XK_Left)
 		game->player.angle += ROT_SPEED;
+	game->player.displacement.x = game->player.position.x + \
+									ROT_SPEED * cos(game->player.angle);
+	game->player.displacement.y = game->player.position.y + \
+									ROT_SPEED * -sin(game->player.angle);
 }
 
 void	ft_update_player_position(t_game *game, float angle)
