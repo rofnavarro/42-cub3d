@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 13:29:03 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/24 21:48:10 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/09/25 09:40:16 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 # define WIN_H 900
 
 # define MINIMAP_SIZE 16
-# define PLAYER_SIZE (log2(MINIMAP_SIZE))
+# define PLAYER_SIZE (log2(MINIMAP_SIZE) * 2)
 # define LINE_SIZE 8
 
 # define PI 3.14159265358979323846
