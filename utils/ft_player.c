@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 20:59:41 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/19 16:52:57 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/09/26 15:40:09 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static void	ft_set_direction_player(t_player *player)
 		player->angle = (3 * PI) / 2;
 	else if (player->direction == 'E')
 		player->angle = 0;
+	player->size = (log2(MINIMAP_SIZE) * 2);
 	player->displacement.x = cos(player->angle) * 5;
 	player->displacement.y = -sin(player->angle) * 5;
 }

@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 13:29:03 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/25 09:40:16 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/09/26 17:45:08 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@
 # define WIN_W 1600
 # define WIN_H 900
 
-# define MINIMAP_SIZE 16
-# define PLAYER_SIZE (log2(MINIMAP_SIZE) * 2)
+# define MINIMAP_SIZE 32
+# define MINIMAP_OFFSET 2
 # define LINE_SIZE 8
 
 # define PI 3.14159265358979323846
@@ -105,6 +105,7 @@ typedef struct s_player
 	t_point	displacement;
 	float	angle;
 	char	direction;
+	int		size;
 }	t_player;
 
 typedef struct s_game
@@ -157,8 +158,8 @@ int			ft_handle_keyrelease(int keysym, t_game *game);
 void		ft_check_characters(t_game *game);
 void		ft_map_is_closed(t_game *game);
 //	utils/ft_math.c
+float		ft_fix_angle(float a);
 float		ft_distance(t_point a, t_point b, float angle);
-long double	ft_log_2(const long double x);
 //	utils/ft_matrix.c
 void		ft_free_matrix(char **matrix);
 int			ft_matrix_size(char **matrix);
