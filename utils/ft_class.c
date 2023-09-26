@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 15:36:59 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/26 17:16:41 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/09/26 19:10:38 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ static void	render_direction(t_game *game)
 	t_point	start;
 
 	start.x = (game->player.position.x * (MINIMAP_SIZE)) + \
-											((MINIMAP_SIZE / 2) + MINIMAP_OFFSET);
+								((MINIMAP_SIZE / 2) + MINIMAP_OFFSET);
 	start.y = (game->player.position.y * (MINIMAP_SIZE)) + \
-											((MINIMAP_SIZE / 2) + MINIMAP_OFFSET);
+								((MINIMAP_SIZE / 2) + MINIMAP_OFFSET);
 	direction.x = start.x + (cos(game->player.angle) * 10);
 	direction.y = start.y + (-sin(game->player.angle) * 10);
 	render_line(game, start, direction, 0xFF0000);
@@ -67,16 +67,15 @@ void	render_player(t_game *game)
 {
 	int		i;
 	int		j;
-
 	t_rect	player;
 
 	player.height = game->player.size + 1;
 	player.width = game->player.size + 1;
 	player.color = 0x0000FF;
 	player.position.x = (game->player.position.x * MINIMAP_SIZE) + \
-						((MINIMAP_SIZE / 2) - (game->player.size / 2) + MINIMAP_OFFSET);
+				((MINIMAP_SIZE / 2) - (game->player.size / 2) + MINIMAP_OFFSET);
 	player.position.y = (game->player.position.y * MINIMAP_SIZE) + \
-						((MINIMAP_SIZE / 2) - (game->player.size / 2) + MINIMAP_OFFSET);
+				((MINIMAP_SIZE / 2) - (game->player.size / 2) + MINIMAP_OFFSET);
 	render_rect(&game->img, player);
 	render_direction(game);
 }

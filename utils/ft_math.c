@@ -6,13 +6,13 @@
 /*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 17:35:45 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/26 17:44:49 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/09/26 19:09:31 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-float		ft_fix_angle(float a)
+float	ft_fix_angle(float a)
 {
 	if (a > (2 * PI) - (PI / 180))
 		a -= (2 * PI);
