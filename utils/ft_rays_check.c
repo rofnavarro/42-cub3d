@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 17:11:54 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/27 13:04:10 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/09/27 15:05:18 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,11 @@ void	check_horizontal(t_game *game)
 		}
 		rays.angle = (rays.angle + (PI / 180));
 		rays.angle = ft_fix_angle(rays.angle);
-		// if (ft_distance(rays.start, rays.end, ft_fix_angle(rays.angle)) > 500)
-		// {
-		// 	rays.end.x = ((rays.end.x * cos(ft_fix_angle(rays.angle)) / 500 ));
-		// 	rays.end.y = ((rays.end.y * -sin(ft_fix_angle(rays.angle)) / 500));
-		// }
+		if (ft_distance(rays.start, rays.end, ft_fix_angle(rays.angle)) > 500)
+		{
+			rays.end.x = (rays.start.x + (rays.end.x * cos(ft_fix_angle(rays.angle))) * 0.0005);
+			rays.end.y = (rays.start.y + (rays.end.y * -sin(ft_fix_angle(rays.angle))) * 0.0005);
+		}
 		render_line(game, rays.start, rays.end, 0x009090);
 		rays.ray++;
 	}
