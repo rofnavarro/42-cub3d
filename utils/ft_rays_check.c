@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 17:11:54 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/26 18:48:22 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/09/26 23:53:44 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@ void	check_horizontal(t_game *game)
 		{
 			rays.end.y = ((((int)rays.start.y) >> ((int)log2(MINIMAP_SIZE))) << \
 					((int)log2(MINIMAP_SIZE))) + MINIMAP_OFFSET;
-			rays.end.x = (rays.start.y - rays.end.y) * (1 / tan(ft_fix_angle(rays.angle))) + \
+			rays.end.x = (rays.start.y - rays.end.y) * (1 / tan(rays.angle)) + \
 							rays.start.x + MINIMAP_OFFSET;
 		}
 		else if (rays.angle > PI && rays.angle < 2 * PI)
 		{
 			rays.end.y = ((((int)rays.start.y) >> ((int)log2(MINIMAP_SIZE))) << \
 					((int)log2(MINIMAP_SIZE))) + MINIMAP_SIZE + MINIMAP_OFFSET;
-			rays.end.x = (rays.start.y - rays.end.y) * (1 / tan(ft_fix_angle(rays.angle))) + \
+			rays.end.x = (rays.start.y - rays.end.y) * (1 / tan(rays.angle)) + \
 							rays.start.x + MINIMAP_OFFSET;
 		}
 		else
