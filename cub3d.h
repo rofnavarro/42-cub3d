@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: rferrero <rferrero@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 13:29:03 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/29 00:22:37 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/09/29 17:51:11 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 # define WIN_W 1600
 # define WIN_H 900
 
-# define MINIMAP_SIZE 32
+# define MINIMAP_TILE 32
 # define MINIMAP_OFFSET 2
 # define LINE_SIZE 8
 

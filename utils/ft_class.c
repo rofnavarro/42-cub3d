@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_class.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: rferrero <rferrero@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 15:36:59 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/26 19:10:38 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/09/29 17:51:11 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ static void	render_direction(t_game *game)
 	t_point	direction;
 	t_point	start;
 
-	start.x = (game->player.position.x * (MINIMAP_SIZE)) + \
-								((MINIMAP_SIZE / 2) + MINIMAP_OFFSET);
-	start.y = (game->player.position.y * (MINIMAP_SIZE)) + \
-								((MINIMAP_SIZE / 2) + MINIMAP_OFFSET);
+	start.x = (game->player.position.x * (MINIMAP_TILE)) + \
+								((MINIMAP_TILE / 2) + MINIMAP_OFFSET);
+	start.y = (game->player.position.y * (MINIMAP_TILE)) + \
+								((MINIMAP_TILE / 2) + MINIMAP_OFFSET);
 	direction.x = start.x + (cos(game->player.angle) * 10);
 	direction.y = start.y + (-sin(game->player.angle) * 10);
 	render_line(game, start, direction, 0xFF0000);
@@ -46,16 +46,16 @@ void	render_minimap(t_game *game)
 	int		j;
 	t_rect	rect;
 
-	rect.width = MINIMAP_SIZE - 1;
-	rect.height = MINIMAP_SIZE - 1;
+	rect.width = MINIMAP_TILE - 1;
+	rect.height = MINIMAP_TILE - 1;
 	i = 0;
 	while (game->map.map[i])
 	{
 		j = 0;
-		rect.position.y = ((i * (MINIMAP_SIZE)) + MINIMAP_OFFSET);
+		rect.position.y = ((i * (MINIMAP_TILE)) + MINIMAP_OFFSET);
 		while (game->map.map[i][j])
 		{
-			rect.position.x = ((j * (MINIMAP_SIZE)) + MINIMAP_OFFSET);
+			rect.position.x = ((j * (MINIMAP_TILE)) + MINIMAP_OFFSET);
 			ft_check_map_char(game, game->map.map[i][j], &rect);
 			j++;
 		}
@@ -72,10 +72,10 @@ void	render_player(t_game *game)
 	player.height = game->player.size + 1;
 	player.width = game->player.size + 1;
 	player.color = 0x0000FF;
-	player.position.x = (game->player.position.x * MINIMAP_SIZE) + \
-				((MINIMAP_SIZE / 2) - (game->player.size / 2) + MINIMAP_OFFSET);
-	player.position.y = (game->player.position.y * MINIMAP_SIZE) + \
-				((MINIMAP_SIZE / 2) - (game->player.size / 2) + MINIMAP_OFFSET);
+	player.position.x = (game->player.position.x * MINIMAP_TILE) + \
+				((MINIMAP_TILE / 2) - (game->player.size / 2) + MINIMAP_OFFSET);
+	player.position.y = (game->player.position.y * MINIMAP_TILE) + \
+				((MINIMAP_TILE / 2) - (game->player.size / 2) + MINIMAP_OFFSET);
 	render_rect(&game->img, player);
 	render_direction(game);
 }

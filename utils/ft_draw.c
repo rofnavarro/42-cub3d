@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 21:42:23 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/29 17:40:14 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/09/29 17:45:42 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ int	ft_draw_handler(t_game *game)
 		render_minimap(game);
 		render_player(game);
 		check_horizontal(game);
-		// check_vertical(game);
 	}
 	mlx_put_image_to_window(game->mlx, game->win, game->img.mlx_img, 0, 0);
 	return (EXIT_SUCCESS);
