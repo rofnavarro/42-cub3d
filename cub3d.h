@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rferrero <rferrero@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 13:29:03 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/28 15:46:28 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/09/29 00:22:37 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 # define WIN_W 1600
 # define WIN_H 900
 
-# define MINIMAP_SIZE 64
+# define MINIMAP_SIZE 32
 # define MINIMAP_OFFSET 2
 # define LINE_SIZE 8
 
@@ -179,6 +179,7 @@ void		ft_map_validation(t_game *game);
 void		ft_preparation(t_game *game, int argc, char **argv);
 //	utils/ft_rays_check.c
 void		check_horizontal(t_game *game);
+void		check_vertical(t_game *game);
 //	utils/ft_read_map.c
 char		*ft_read_map(t_game *game, char argv[]);
 char		**ft_map_config(char **matrix);
