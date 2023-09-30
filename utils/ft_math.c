@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_math.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
+/*   By: rinacio <rinacio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 17:35:45 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/26 19:09:31 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/09/29 19:27:50 by rinacio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,10 @@ float	ft_distance(t_point a, t_point b, float angle)
 	ret = (cos((angle)) * (b.x - a.x)) - \
 			(sin((angle)) * (b.y - a.y));
 	return (ret);
+}
+
+float	ft_convert_distance(float distance_minimap)
+{
+	return (((((int)distance_minimap) >> ((int)log2(MINIMAP_TILE))) << \
+					((int)log2(MINIMAP_TILE))));
 }

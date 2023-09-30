@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rferrero <rferrero@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: rinacio <rinacio@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 13:29:03 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/29 17:51:11 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/09/29 19:29:28 by rinacio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@
 # include <X11/X.h>
 
 //	defines
-# define WIN_W 1600
+# define WIN_W 1800
 # define WIN_H 900
 
-# define MINIMAP_TILE 32
+# define MINIMAP_TILE 8
 # define MINIMAP_OFFSET 2
 # define LINE_SIZE 8
 
@@ -160,6 +160,7 @@ void		ft_map_is_closed(t_game *game);
 //	utils/ft_math.c
 float		ft_fix_angle(float a);
 float		ft_distance(t_point a, t_point b, float angle);
+float		ft_convert_distance(float distance_minimap);
 //	utils/ft_matrix.c
 void		ft_free_matrix(char **matrix);
 int			ft_matrix_size(char **matrix);
@@ -178,8 +179,11 @@ void		ft_player_to_direction(t_player *player, char **map);
 void		ft_map_validation(t_game *game);
 void		ft_preparation(t_game *game, int argc, char **argv);
 //	utils/ft_rays_check.c
-void		check_horizontal(t_game *game);
-void		check_vertical(t_game *game);
+void		ft_raycasting(t_game *game);
+void		ft_calc_rays(t_game *game, t_rays *rays, t_point *final, char dir);
+void		ft_check_angles_h(t_rays *rays, t_point *zero);
+int			ft_check_boundaries(t_game *game, t_rays *rays, t_point *zero);
+void		ft_check_angles_v(t_rays *rays, t_point *zero);
 //	utils/ft_read_map.c
 char		*ft_read_map(t_game *game, char argv[]);
 char		**ft_map_config(char **matrix);
