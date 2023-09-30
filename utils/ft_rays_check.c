@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_rays_check.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rinacio <rinacio@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 17:11:54 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/29 19:32:47 by rinacio          ###   ########.fr       */
+/*   Updated: 2023/09/30 14:26:31 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_raycasting(t_game *game)
 	t_point	final_v;
 
 	rays.ray = -1;
-	rays.angle = (game->player.angle - (30 * PI / 180));
+	rays.angle = (game->player.angle + (30 * PI / 180));
 	rays.angle = ft_fix_angle(rays.angle);
 	while (++rays.ray < 60)
 	{
@@ -39,7 +39,7 @@ void	ft_raycasting(t_game *game)
 			ft_draw_3d(game, &rays, rays.dist_h, 0x009090);
 		else
 			ft_draw_3d(game, &rays, rays.dist_v, 0x5CB8B8);
-		rays.angle = ft_fix_angle(rays.angle + (PI / 180));
+		rays.angle = ft_fix_angle(rays.angle - (PI / 180));
 	}
 }
 
@@ -63,7 +63,7 @@ float	ft_draw_3d(t_game *game, t_rays *rays, float dist, int color)
 	float	line;
 	int		i;
 
-	angle = ft_fix_angle(game->player.angle - rays->angle);
+	angle = -ft_fix_angle(game->player.angle - rays->angle);
 	dist *= cos(angle);
 	line = ft_calc_wall_height(game, dist);
 	end.y = (450 - line / 2);
