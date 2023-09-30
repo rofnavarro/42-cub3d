@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rinacio <rinacio@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 13:29:03 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/29 19:29:28 by rinacio          ###   ########.fr       */
+/*   Updated: 2023/09/30 14:27:51 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,9 @@ void		ft_get_map_config(t_game *game, char **line);
 void		ft_check_valid_texture_path(t_game *game, char **path);
 void		ft_check_rgb(t_game *game, char **rgb, int *color);
 void		ft_populate_path_array(t_game *game, char **line, int i);
+// utils/ft_draw_background.c
+int			ft_convert_rgb(int *rgb);
+void		ft_draw_background(t_game *game);
 //	utils/ft_draw.c
 void		ft_img_pix_put(t_img *img, int x, int y, int color);
 void		render_rect(t_img *img, t_rect rect);
@@ -188,9 +191,6 @@ void		ft_check_angles_v(t_rays *rays, t_point *zero);
 char		*ft_read_map(t_game *game, char argv[]);
 char		**ft_map_config(char **matrix);
 char		**ft_map_map(char **matrix);
-// utils/ft_draw_background.c
-int			ft_convert_rgb(int *rgb);
-void		ft_draw_background(t_game *game);
 //utils/ft_textures.c
 void		load_textures(t_game *game);
 
