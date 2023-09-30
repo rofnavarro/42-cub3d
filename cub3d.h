@@ -34,10 +34,10 @@
 # include <X11/X.h>
 
 //	defines
-# define WIN_W 1600
+# define WIN_W 1800
 # define WIN_H 900
 
-# define MINIMAP_TILE 32
+# define MINIMAP_TILE 8
 # define MINIMAP_OFFSET 2
 # define LINE_SIZE 8
 

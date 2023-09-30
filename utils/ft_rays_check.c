@@ -12,6 +12,8 @@
 
 #include "../cub3d.h"
 
+float	ft_draw_3d(t_game *game, t_rays *rays, float dist, int color);
+
 void	ft_raycasting(t_game *game)
 {
 	t_rays	rays;
@@ -30,8 +32,48 @@ void	ft_raycasting(t_game *game)
 			render_line(game, rays.start, final_h, 0x009090);
 		else if (rays.dist_v <= rays.dist_h)
 			render_line(game, rays.start, final_v, 0x009090);
+		if (rays.dist_h < rays.dist_v)
+			ft_draw_3d(game, &rays, rays.dist_h, 0x009090);
+		else
+			ft_draw_3d(game, &rays, rays.dist_v, 0x5CB8B8);
 		rays.angle = (rays.angle + (PI / 180));
 		rays.angle = ft_fix_angle(rays.angle);
+	}
+}
+
+float	ft_calc_wall_height(t_game *game, float dist)
+{
+	float	line_height;
+
+	line_height = WIN_H / dist ;
+	if (line_height > 320)
+		line_height = 320;
+	if (dist > 40)
+		return (0);
+	return (line_height);
+}
+
+float	ft_draw_3d(t_game *game, t_rays *rays, float dist, int color)
+{
+	float	ca;
+	t_point	start;
+	t_point	end;
+	float	line;
+	int		i;
+
+	ca = game->player.angle - rays->angle;
+	ca = ft_fix_angle(ca);
+	dist *= cos(ca);
+	line = ft_calc_wall_height(game, dist);
+	end.y = (450 - line / 2);
+	start.y = (450 - line / 2) + line;
+	start.x = rays->ray * (int)WIN_H / 60;
+	i = -1;
+	while (++i < (int)WIN_H / 60)
+	{
+		end.x = start.x;
+		render_line(game, start, end, color);
+		start.x++;
 	}
 }
 
