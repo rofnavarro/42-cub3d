@@ -28,10 +28,13 @@ void	ft_raycasting(t_game *game)
 	{
 		ft_calc_rays(game, &rays, &final_h, 'H');
 		ft_calc_rays(game, &rays, &final_v, 'V');
-		if (rays.dist_h < rays.dist_v)
-			render_line(game, rays.start, final_h, 0x009090);
-		else if (rays.dist_v <= rays.dist_h)
-			render_line(game, rays.start, final_v, 0x009090);
+		if (game->map.toggle == 0)
+		{
+			if (rays.dist_h < rays.dist_v)
+				render_line(game, rays.start, final_h, 0x009090);
+			else if (rays.dist_v <= rays.dist_h)
+				render_line(game, rays.start, final_v, 0x009090);
+		}
 		if (rays.dist_h < rays.dist_v)
 			ft_draw_3d(game, &rays, rays.dist_h, 0x009090);
 		else

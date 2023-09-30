@@ -67,8 +67,8 @@ int	ft_draw_handler(t_game *game)
 	{
 		render_minimap(game);
 		render_player(game);
-		ft_raycasting(game);
 	}
+	ft_raycasting(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img.mlx_img, 0, 0);
 	return (EXIT_SUCCESS);
 }
