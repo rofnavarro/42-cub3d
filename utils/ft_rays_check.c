@@ -28,6 +28,28 @@ void	ft_raycasting(t_game *game)
 	{
 		ft_calc_rays(game, &rays, &final_h, 'H');
 		ft_calc_rays(game, &rays, &final_v, 'V');
+		if (rays.dist_h < rays.dist_v)
+			ft_draw_3d(game, &rays, rays.dist_h, 0x5CB8B8);
+		else
+			ft_draw_3d(game, &rays, rays.dist_v, 0x009090);
+		rays.angle = ft_fix_angle(rays.angle - (PI / 180));
+	}
+}
+
+void	ft_draw_minimap_raylines(t_game *game)
+{
+	t_rays	rays;
+	t_point	zero;
+	t_point	final_h;
+	t_point	final_v;
+
+	rays.ray = -1;
+	rays.angle = (game->player.angle + (30 * PI / 180));
+	rays.angle = ft_fix_angle(rays.angle);
+	while (++rays.ray < 60)
+	{
+		ft_calc_rays(game, &rays, &final_h, 'H');
+		ft_calc_rays(game, &rays, &final_v, 'V');
 		if (game->map.toggle == 0)
 		{
 			if (rays.dist_h < rays.dist_v)
@@ -35,10 +57,6 @@ void	ft_raycasting(t_game *game)
 			else if (rays.dist_v <= rays.dist_h)
 				render_line(game, rays.start, final_v, 0x009090);
 		}
-		if (rays.dist_h < rays.dist_v)
-			ft_draw_3d(game, &rays, rays.dist_h, 0x009090);
-		else
-			ft_draw_3d(game, &rays, rays.dist_v, 0x5CB8B8);
 		rays.angle = ft_fix_angle(rays.angle - (PI / 180));
 	}
 }

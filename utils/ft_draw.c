@@ -63,12 +63,13 @@ void	render_line(t_game *game, t_point start, t_point end, int color)
 int	ft_draw_handler(t_game *game)
 {
 	ft_draw_background(game);
+	ft_raycasting(game);
 	if (game->map.toggle == 0)
 	{
 		render_minimap(game);
 		render_player(game);
 	}
-	ft_raycasting(game);
+	ft_draw_minimap_raylines(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img.mlx_img, 0, 0);
 	return (EXIT_SUCCESS);
 }
