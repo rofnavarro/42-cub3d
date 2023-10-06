@@ -32,6 +32,7 @@ SRC						=				cub3d.c \
 															ft_map_validation.c \
 															ft_math.c \
 															ft_matrix.c \
+															ft_movement_validation.c \
 															ft_movement.c \
 															ft_player.c \
 															ft_preparation.c \

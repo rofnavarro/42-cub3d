@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 13:29:03 by rferrero          #+#    #+#             */
-/*   Updated: 2023/10/04 22:13:13 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/10/06 12:20:17 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,11 +101,11 @@ typedef struct s_map
 
 typedef struct s_player
 {
-	t_point	position;
-	t_point	displacement;
-	float	angle;
-	char	direction;
-	int		size;
+	t_point		position;
+	t_point		displacement;
+	float		angle;
+	char		direction;
+	int			size;
 }	t_player;
 
 typedef struct s_game
@@ -170,10 +170,16 @@ int			ft_matrix_size(char **matrix);
 char		**ft_matrix_calloc(int size);
 int			ft_is_numeric(char **matrix);
 int			ft_matrix_max_width(char **matrix);
+//	utils/ft_movement_validation.c
+void		is_valid_front(t_game *game, float angle);
+void		is_valid_back(t_game *game, float angle);
+void		is_valid_right(t_game *game, float angle);
+void		is_valid_left(t_game *game, float angle);
 //	utils/ft_movement.c
 void		ft_move_player(t_game *game, int keysym);
 void		ft_rotate_player(t_game *game, int keysym);
 void		ft_update_player_position(t_game *game, float angle);
+void		ft_displacement(t_game *game, float angle);
 //	utils/ft_player.c
 void		ft_player_position(t_player *player, char **map);
 void		ft_player_to_zero(t_player *player, char **map);
