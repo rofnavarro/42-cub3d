@@ -6,11 +6,40 @@
 /*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 16:32:56 by rinacio           #+#    #+#             */
-/*   Updated: 2023/09/26 18:49:53 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/10/06 00:23:32 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+static int	is_valid(t_game *game, float angle)
+{
+	t_point	ref;
+	t_point	map;
+
+	if (game->player.angle <= PI && game->player.angle > 0)
+	{
+		ref.y = -0.2;
+		if (game->player.angle < PI_2)
+			ref.x = 0.2;
+		else
+			ref.x = -0.2;
+	}
+	else if (game->player.angle > PI && game->player.angle < (2 * PI) || \
+			game->player.angle == 0)
+	{
+		ref.y = 0.2;
+		if (game->player.angle >= (3 * PI_2))
+			ref.x = 0.2;
+		else
+			ref.x = -0.2;
+	}
+	map.y = rintf(game->player.displacement.y + ref.y);
+	map.x = rintf(game->player.displacement.x + ref.x);
+	if (game->map.map[(int)map.y][(int)map.x] != '1')
+		return (EXIT_SUCCESS);
+	return (EXIT_FAILURE);
+}
 
 void	ft_move_player(t_game *game, int keysym)
 {
@@ -43,6 +72,9 @@ void	ft_update_player_position(t_game *game, float angle)
 									SPEED * cos(game->player.angle + angle);
 	game->player.displacement.y = game->player.position.y + \
 									SPEED * -sin(game->player.angle + angle);
-	game->player.position.x = game->player.displacement.x;
-	game->player.position.y = game->player.displacement.y;
+	if (is_valid(game, angle) == EXIT_SUCCESS)
+	{
+		game->player.position.y = game->player.displacement.y;
+		game->player.position.x = game->player.displacement.x;
+	}
 }

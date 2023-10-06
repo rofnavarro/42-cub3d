@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 13:29:03 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/30 14:27:51 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/10/04 22:13:13 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 # define WIN_W 1800
 # define WIN_H 900
 
-# define MINIMAP_TILE 8
+# define MINIMAP_TILE 32
 # define MINIMAP_OFFSET 2
 # define LINE_SIZE 8
 
