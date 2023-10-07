@@ -33,6 +33,7 @@ void	ft_raycasting(t_game *game)
 		else
 			ft_draw_3d(game, &rays, rays.dist_v, 0x009090);
 		rays.angle = ft_fix_angle(rays.angle - (PI / 180));
+		
 	}
 }
 
@@ -65,10 +66,8 @@ float	ft_calc_wall_height(t_game *game, float dist)
 {
 	float	line_height;
 
-	line_height = WIN_H / dist ;
-	if (line_height > 320)
-		line_height = 320;
-	if (dist > 40)
+	line_height = (int)(WIN_H / dist * 1.5) ;
+	if (dist > 60)
 		return (0);
 	return (line_height);
 }
@@ -84,8 +83,12 @@ float	ft_draw_3d(t_game *game, t_rays *rays, float dist, int color)
 	angle = -ft_fix_angle(game->player.angle - rays->angle);
 	dist *= cos(angle);
 	line = ft_calc_wall_height(game, dist);
-	end.y = (450 - line / 2);
-	start.y = (450 - line / 2) + line;
+	end.y = (WIN_H/2 - line / 2);
+	if (end.y  < 0 || end.y  > WIN_H)
+		end.y = 0;
+	start.y = (WIN_H/2 + line / 2);
+	if (start.y >= WIN_H)
+		start.y >= WIN_H - 1;
 	start.x = rays->ray * (int)WIN_W / 60;
 	i = -1;
 	while (++i < (int)WIN_W / 60)
