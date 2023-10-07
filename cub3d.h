@@ -193,6 +193,7 @@ void		ft_calc_rays(t_game *game, t_rays *rays, t_point *final, char dir);
 void		ft_check_angles_h(t_rays *rays, t_point *zero);
 int			ft_check_boundaries(t_game *game, t_rays *rays, t_point *zero);
 void		ft_check_angles_v(t_rays *rays, t_point *zero);
+void		ft_draw_minimap_raylines(t_game *game);
 //	utils/ft_read_map.c
 char		*ft_read_map(t_game *game, char argv[]);
 char		**ft_map_config(char **matrix);
