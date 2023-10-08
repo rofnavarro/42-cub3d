@@ -98,27 +98,48 @@ float	ft_draw_3d(t_game *game, t_rays *rays, float dist, int color)
 	angle = -ft_fix_angle(game->player.angle - rays->angle);
 	dist *= cos(angle);
 	line = ft_calc_wall_height(game, dist);
+	tex_step = 64.0 / (float)line;
 	end.y = (WIN_H/2 - line / 2);
-	// if (end.y  < 0 || end.y  > WIN_H)
-	// 	end.y = 0;
+	if (end.y  < 0 || end.y  > WIN_H)
+		end.y = 0;
 	start.y = (WIN_H/2 + line / 2);
-	// if (start.y >= WIN_H)
-	// 	start.y >= WIN_H - 1;
+	if (start.y >= WIN_H)
+		start.y >= WIN_H - 1;
 	start.x = rays->ray * (int)WIN_W / 60;
 	i = -1;
+	end.x = start.x;
 	while (++i < (int)WIN_W / 60)
 	{
-		end.x = start.x;
-		j = end.y - 1;
-		tex_step = 64.0 / line;
 		tex_pos = (end.y - WIN_H / 2 + line / 2) * tex_step;
-		tex_y = 0;
-		tex_x = (int)(start.x / 2.0) % 32;
+		tex_y = 0;       
+		if (rays->shade == 1)
+		{
+			tex_x = (int)(start.x / 2.0) % 64;
+			if (rays->angle > PI)
+				tex_x = 63 - tex_x;
+		}
+		else
+		{
+			tex_x = (int)(start.x / 2.0) % 64;
+			if (rays->angle > PI_2 && rays->angle < 3 * PI_2)
+				tex_x = 63-tex_x;			
+		}
+		j = end.y;
 		while (++j < start.y)
 		{
 			tex_y = (int)tex_pos & 63;
 			tex_pos += tex_step;
-			color = game->map.walls[2][((int)tex_y * 64 + (int)tex_x)];
+			int wall = 0;
+			float angle = rays->angle;
+			if (angle >0 && angle <= PI_2)
+				wall = 0;
+			if (angle > PI_2 && angle <= PI)
+				wall = 1;
+			if (angle > PI && angle <= 3 * PI_2)
+				wall = 2;
+			if (angle > 3 * PI_2 && angle < 2 * PI)
+				wall = 3;			
+			color = game->map.walls[wall][((int)tex_y * 64 + (int)tex_x)];
 			float fator = 0.80;
 			int cor_de_fundo = 0x000000;
 			if (rays->intersection == 1)
