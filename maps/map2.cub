@@ -1,10 +1,10 @@
-SO ./texture/texture1.xpm
+SO ./texture/texture6.xpm
 NO ./texture/texture2.xpm
 EA ./texture/texture3.xpm
-WE ./texture/texture4.xpm
+WE ./texture/texture5.xpm
 
-F 220,100,0
-C 255,30,0
+F 255,102,204
+C 0,250,154
 
 
 

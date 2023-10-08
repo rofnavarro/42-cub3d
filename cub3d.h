@@ -52,7 +52,8 @@
 typedef struct s_img
 {
 	void	*mlx_img;
-	char	*addr;
+	//char	*addr;
+	int		*addr;
 	int		w;
 	int		h;
 	int		bpp;
@@ -74,6 +75,8 @@ typedef struct s_rays
 	float	angle;
 	float	dist_h;
 	float	dist_v;
+	int		intersection;
+	float	shade;
 	t_point	map;
 	t_point	start;
 	t_point	end;
@@ -96,7 +99,7 @@ typedef struct s_map
 	int		*floor_color;
 	int		*ceiling_color;
 	int		toggle;
-	t_img	walls[4];
+	int		walls[4][4096];
 }	t_map;
 
 typedef struct s_player
@@ -199,6 +202,6 @@ char		*ft_read_map(t_game *game, char argv[]);
 char		**ft_map_config(char **matrix);
 char		**ft_map_map(char **matrix);
 //utils/ft_textures.c
-void		load_textures(t_game *game);
+void		ft_load_textures(t_game *game);
 
 #endif

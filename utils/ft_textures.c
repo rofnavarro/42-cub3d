@@ -12,28 +12,24 @@
 
 #include "../cub3d.h"
 
-void	load_textures(t_game *game)
+void	ft_load_textures(t_game *game)
 {
-	int	i;
+	int		i;
+	int		j;
+	t_img	img;
 
-	i = 0;
-	while (i < 4)
+	i = -1;
+	while (++i < 4)
 	{
-		game->map.walls[i].mlx_img = mlx_xpm_file_to_image(game->mlx,
-				game->map.textures[i], &game->map.walls[i].w,
-				&game->map.walls[i].h);
-		if (!game->map.walls[i].mlx_img)
+		img.mlx_img = mlx_xpm_file_to_image(game->mlx,
+				game->map.textures[i], &img.w, &img.h);
+		if (!img.mlx_img)
 			ft_validation_exit(game, "Error loading the texture.\n");
-		game->map.walls[i].addr = mlx_get_data_addr(game->map.walls[i].mlx_img,
-				&game->map.walls[i].bpp, &game->map.walls[i].line_len,
-				&game->map.walls[i].endian);
-		i++;
-	}
-	i = 0;
-	while (i < 4)
-	{
-		if (game->map.walls[i].mlx_img)
-			mlx_destroy_image(game->mlx, game->map.walls[i].mlx_img);
-		i++;
+		img.addr = (int *)mlx_get_data_addr(img.mlx_img, &img.bpp, &img.line_len,
+				&img.endian);
+		j = -1;
+		while (++j < 4096)
+			game->map.walls[i][j] = img.addr[j];
+		mlx_destroy_image(game->mlx, img.mlx_img);
 	}
 }

@@ -38,5 +38,4 @@ void	ft_draw_background(t_game *game)
 			ft_img_pix_put(&game->img, width, height, color);
 		}
 	}
-	load_textures(game);
 }
