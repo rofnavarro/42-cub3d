@@ -32,6 +32,6 @@ float	ft_distance(t_point a, t_point b, float angle)
 
 float	ft_convert_distance(float distance_minimap)
 {
-	return (((((int)distance_minimap) >> ((int)log2(MINIMAP_TILE))) << \
-					((int)log2(MINIMAP_TILE))));
+	return ((int)distance_minimap >> (int)log2(MINIMAP_TILE) << \
+					(int)log2(MINIMAP_TILE));
 }

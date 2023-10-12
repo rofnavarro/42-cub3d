@@ -40,6 +40,7 @@
 # define MINIMAP_TILE 8
 # define MINIMAP_OFFSET 2
 # define LINE_SIZE 8
+# define N_RAYS 600
 
 # define PI 3.14159265358979323846
 # define PI_2 1.57079632679489661923
@@ -80,6 +81,7 @@ typedef struct s_rays
 	t_point	map;
 	t_point	start;
 	t_point	end;
+	t_point	wall;
 }	t_rays;
 
 typedef struct s_rect
@@ -193,7 +195,10 @@ void		ft_preparation(t_game *game, int argc, char **argv);
 //	utils/ft_rays_check.c
 void		ft_raycasting(t_game *game);
 void		ft_calc_rays(t_game *game, t_rays *rays, t_point *final, char dir);
+void		ft_calc_rays_3d(t_game *game, t_rays *rays, t_point *final, char dir);
 void		ft_check_angles_h(t_rays *rays, t_point *zero);
+void		ft_check_angles_h_3d(t_rays *rays, t_point *zero);
+void		ft_check_angles_v_3d(t_rays *rays, t_point *zero);
 int			ft_check_boundaries(t_game *game, t_rays *rays, t_point *zero);
 void		ft_check_angles_v(t_rays *rays, t_point *zero);
 void		ft_draw_minimap_raylines(t_game *game);
