@@ -45,25 +45,25 @@ SRC						=				cub3d.c \
 															ft_walls.c \
 															)
 
-SRC_BONUS				=				bonus/cub3d.c \
-										$(addprefix bonus/utils/, ft_class.c \
-															ft_config_validation.c \
-															ft_draw_background.c \
-															ft_draw.c \
-										 					ft_finish.c \
-															ft_handle_keypress.c \
-															ft_map_validation.c \
-															ft_math.c \
-															ft_matrix.c \
-															ft_minimap.c \
-															ft_movement_validation.c \
-															ft_movement.c \
-															ft_player.c \
-															ft_preparation.c \
-															ft_rays_check.c \
-															ft_read_map.c \
-															ft_textures.c \
-															ft_walls.c \
+SRC_BONUS				=				bonus/cub3d_bonus.c \
+										$(addprefix bonus/utils/, ft_class_bonus.c \
+															ft_config_validation_bonus.c \
+															ft_draw_background_bonus.c \
+															ft_draw_bonus.c \
+										 					ft_finish_bonus.c \
+															ft_handle_keypress_bonus.c \
+															ft_map_validation_bonus.c \
+															ft_math_bonus.c \
+															ft_matrix_bonus.c \
+															ft_minimap_bonus.c \
+															ft_movement_validation_bonus.c \
+															ft_movement_bonus.c \
+															ft_player_bonus.c \
+															ft_preparation_bonus.c \
+															ft_rays_check_bonus.c \
+															ft_read_map_bonus.c \
+															ft_textures_bonus.c \
+															ft_walls_bonus.c \
 															)
 
 OBJ						=				$(SRC:%.c=%.o)
