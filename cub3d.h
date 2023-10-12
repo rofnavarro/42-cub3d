@@ -46,6 +46,7 @@
 # define RED 0xFF0000
 # define GREEN 0x00FF00
 # define BLUE 0x0000FF
+# define RAY_COLOR 0x009090
 
 # define PI 3.14159265358979323846
 # define PI_2 1.57079632679489661923
@@ -167,7 +168,6 @@ int		ft_finish(t_game *game);
 void	ft_validation_exit(t_game *game, char *msg);
 //	utils/ft_handle_keypress.c
 int		ft_handle_keypress(int keysym, t_game *game);
-int		ft_handle_keyrelease(int keysym, t_game *game);
 //	utils/ft_map_validation.c
 void	ft_check_characters(t_game *game);
 void	ft_map_is_closed(t_game *game);
@@ -181,6 +181,11 @@ int		ft_matrix_size(char **matrix);
 char	**ft_matrix_calloc(int size);
 int		ft_is_numeric(char **matrix);
 int		ft_matrix_max_width(char **matrix);
+//	utils/ft_minimap.c
+void	ft_calc_rays(t_game *game, t_rays *rays, t_point *final, char dir);
+void	ft_check_angles_h(t_rays *rays, t_point *zero);
+void	ft_check_angles_v(t_rays *rays, t_point *zero);
+void	ft_draw_minimap_raylines(t_game *game);
 //	utils/ft_movement_validation.c
 void	is_valid_front(t_game *game, float angle);
 void	is_valid_back(t_game *game, float angle);
@@ -200,25 +205,22 @@ void	ft_map_validation(t_game *game);
 void	ft_preparation(t_game *game, int argc, char **argv);
 //	utils/ft_rays_check.c
 void	ft_raycasting(t_game *game);
-void	ft_calc_rays(t_game *game, t_rays *rays, t_point *final, char dir);
-void	ft_calc_3d(t_game *game, t_rays *rays, t_point *final, char dir);
-float	ft_draw_3d(t_game *game, t_rays *rays, float dist);
-void	ft_check_angles_h(t_rays *rays, t_point *zero);
-void	ft_check_angles_h_3d(t_rays *rays, t_point *zero);
-void	ft_check_angles_v_3d(t_rays *rays, t_point *zero);
-int		ft_check_boundaries(t_game *game, t_rays *rays, t_point *zero);
-void	ft_check_angles_v(t_rays *rays, t_point *zero);
-void	ft_draw_minimap_raylines(t_game *game);
 void	ft_intersection(t_game *game, t_rays *rays, t_point h, t_point v);
-void	ft_draw_wall(t_game *game, t_rays *rays, t_point start, t_point end);
-float	ft_calc_text_x(t_rays *rays);
+int		ft_check_boundaries(t_game *game, t_rays *rays, t_point *zero);
 //	utils/ft_read_map.c
 char	*ft_read_map(t_game *game, char argv[]);
 char	**ft_map_config(char **matrix);
 char	**ft_map_map(char **matrix);
-//utils/ft_textures.c
+//	utils/ft_textures.c
 void	ft_load_textures(t_game *game);
 void	ft_get_pix_color(t_game *game, t_rays *rays, t_point tex);
 int		ft_choose_texture(t_game *game, t_rays *rays);
+float	ft_calc_text_x(t_rays *rays);
+float	ft_draw_3d(t_game *game, t_rays *rays, float dist);
+//	utils/ft_walls.c
+void	ft_check_angles_v_3d(t_rays *rays, t_point *zero);
+void	ft_check_angles_h_3d(t_rays *rays, t_point *zero);
+void	ft_calc_3d(t_game *game, t_rays *rays, t_point *final, char dir);
+void	ft_draw_wall(t_game *game, t_rays *rays, t_point start, t_point end);
 
 #endif

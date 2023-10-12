@@ -1,7 +1,7 @@
-SO ./texture/texture7.xpm
-NO ./texture/texture2.xpm
-EA ./texture/texture3.xpm
-WE ./texture/texture5.xpm
+SO ./texture/wall10.xpm
+NO ./texture/wall11.xpm
+EA ./texture/wall12.xpm
+WE ./texture/wall13.xpm
 
 F 255,102,204
 C 0,250,154

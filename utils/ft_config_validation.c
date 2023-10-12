@@ -81,7 +81,7 @@ void	ft_check_valid_texture_path(t_game *game, char **path)
 	{
 		extension = ft_strnstr(path[i], ".xpm", ft_strlen(path[i]));
 		if (!extension || ft_strlen(extension) != 4)
-			ft_validation_exit(game, "Invalid texture extension\n");
+			ft_validation_exit(game, "Invalid texture\n");
 		fd = open(path[i], O_RDONLY);
 		if (fd < 0)
 			ft_validation_exit(game, "Invalid texture path\n");

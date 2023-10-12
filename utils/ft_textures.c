@@ -63,3 +63,44 @@ int	ft_choose_texture(t_game *game, t_rays *rays)
 		wall = EA;
 	return (wall);
 }
+
+float	ft_calc_text_x(t_rays *rays)
+{
+	float	tex_x;
+
+	if (rays->intersection == 1)
+	{
+		tex_x = (int)(rays->end.x * 4 * MINIMAP_TILE) % 64;
+		if (rays->angle > PI)
+			tex_x = 63 - tex_x;
+	}
+	else
+	{
+		tex_x = (int)(rays->end.y * 4 * MINIMAP_TILE) % 64;
+		if (rays->angle > PI_2 && rays->angle < 3 * PI_2)
+			tex_x = 63 - tex_x;
+	}
+	return (tex_x);
+}
+
+float	ft_draw_3d(t_game *game, t_rays *rays, float dist)
+{
+	float	angle;
+	t_point	start;
+	t_point	end;
+
+	angle = ft_fix_angle(game->player.angle - rays->angle);
+	dist *= cos(angle);
+	rays->line = (int)(WIN_H / dist * 1.8);
+	if (rays->line > WIN_H)
+		rays->line = WIN_H;
+	end.y = (WIN_H / 2 - rays->line / 2);
+	if (end.y < 0 || end.y > WIN_H)
+		end.y = 0;
+	start.y = (WIN_H / 2 + rays->line / 2);
+	if (start.y >= WIN_H)
+		start.y >= WIN_H - 1;
+	start.x = rays->ray * (int)WIN_W / N_RAYS;
+	end.x = start.x;
+	ft_draw_wall(game, rays, start, end);
+}
