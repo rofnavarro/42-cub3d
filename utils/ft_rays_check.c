@@ -110,44 +110,39 @@ float	ft_draw_3d(t_game *game, t_rays *rays, float dist)
 	dist *= cos(angle);
 	ft_calc_wall_height(game, dist, rays);
 	end.y = (WIN_H / 2 - rays->line / 2);
-	if (end.y  < 0 || end.y  > WIN_H)
+	if (end.y < 0 || end.y > WIN_H)
 		end.y = 0;
-	start.y = (WIN_H/2 + rays->line / 2);
+	start.y = (WIN_H / 2 + rays->line / 2);
 	if (start.y >= WIN_H)
 		start.y >= WIN_H - 1;
 	start.x = rays->ray * (int)WIN_W / N_RAYS;
 	end.x = start.x;
-	ft_draw_wall_line(game, rays, start, end);
+	ft_draw_wall(game, rays, start, end);
 }
 
-void ft_draw_wall_line(t_game *game, t_rays *rays, t_point start, t_point end)
+void	ft_draw_wall(t_game *game, t_rays *rays, t_point start, t_point end)
 {
 	int		i;
 	float	tex_pos;
-	float	tex_y;
+	t_point	tex;
 	float	tex_step;
-	int color;
-	int wall;
-	float	tex_x;
-	int	j;
+	int		j;
 
 	i = -1;
 	tex_step = 64.0 / (float)rays->line;
-	tex_x = ft_calc_text_x(rays);
+	tex.x = ft_calc_text_x(rays);
 	while (++i < (int)WIN_W / N_RAYS)
 	{
 		tex_pos = (end.y - WIN_H / 2 + rays->line / 2) * tex_step;
-		tex_y = 0;       
+		tex.y = 0;
 		j = end.y;
 		while (++j < start.y)
 		{
-			tex_y = (int)tex_pos & 63;
+			tex.y = (int)tex_pos & 63;
 			tex_pos += tex_step;
-			wall = ft_choose_texture(game, rays);
-			color = game->map.walls[wall][((int)tex_y * 64 + (int)tex_x)];
-			ft_apply_shade(rays, color);
-			ft_img_pix_put(&game->img, start.x, j, color);
-
+			rays->texture = ft_choose_texture(game, rays);
+			ft_get_pix_color(game, rays, tex);
+			ft_img_pix_put(&game->img, start.x, j, rays->color);
 		}
 		start.x++;
 	}
@@ -180,7 +175,6 @@ void	ft_calc_3d(t_game *game, t_rays *rays, t_point *final, char dir)
 	final->y = rays->end.y;
 	final->x = rays->end.x;
 }
-
 
 void	ft_calc_rays(t_game *game, t_rays *rays, t_point *final, char dir)
 {
@@ -275,7 +269,8 @@ void	ft_check_angles_v_3d(t_rays *rays, t_point *zero)
 	if (rays->angle < PI_2 || rays->angle > (3 * PI / 2))
 	{
 		rays->end.x = ft_convert_distance(rays->start.x) + MINIMAP_TILE;
-		rays->end.y = (rays->start.x - rays->end.x) * tan(rays->angle) + rays->start.y;
+		rays->end.y = (rays->start.x - rays->end.x)
+			* tan(rays->angle) + rays->start.y;
 		zero->x = (MINIMAP_TILE);
 		zero->y = -zero->x * tan(rays->angle);
 	}
@@ -286,7 +281,6 @@ void	ft_check_angles_v_3d(t_rays *rays, t_point *zero)
 		rays->depth = 8;
 	}
 }
-
 
 void	ft_check_angles_h(t_rays *rays, t_point *zero)
 {

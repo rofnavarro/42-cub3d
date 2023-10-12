@@ -34,29 +34,30 @@ void	ft_load_textures(t_game *game)
 	}
 }
 
-int	ft_apply_shade(t_rays *rays, int color)
+void	ft_get_pix_color(t_game *game, t_rays *rays, t_point tex)
 {
+	rays->color = game->map.walls[rays->texture]
+	[((int)tex.y * 64 + (int)tex.x)];
 	if (rays->intersection == 0)
-		return ((int)(((color & RED) >> 16) * SHADE
-			+ ((BLACK & RED) >> 16) * (1 - SHADE)) << 16
-			| (int)(((color & GREEN) >> 8) * SHADE
-			+ ((BLACK & GREEN) >> 8) * (1 - SHADE)) << 8
-			| (int)((color & BLUE) * SHADE
-			+ (BLACK & BLUE) * (1 - SHADE)));
+		rays->color = (int)(((rays->color & RED) >> 16) * SHADE
+				+ ((BLACK & RED) >> 16) * (1 - SHADE)) << 16
+			| (int)(((rays->color & GREEN) >> 8) * SHADE
+				+ ((BLACK & GREEN) >> 8) * (1 - SHADE)) << 8
+			| (int)((rays->color & BLUE) * SHADE
+				+ (BLACK & BLUE) * (1 - SHADE));
 }
-
 
 int	ft_choose_texture(t_game *game, t_rays *rays)
 {
 	int	wall;
 
-	if (rays->intersection && rays->angle < PI && 
-	game->player.position.y > rays->wall.y)
+	if (rays->intersection && rays->angle < PI
+		&& game->player.position.y > rays->wall.y)
 		wall = NO;
 	else if (rays->intersection)
 		wall = SO;
-	else if (!rays->intersection && rays->angle  > PI_2 && rays->angle  < 3 * PI_2 &&
-	game->player.position.x > rays->wall.x)
+	else if (!rays->intersection && rays->angle > PI_2
+		&& rays->angle < 3 * PI_2 && game->player.position.x > rays->wall.x)
 		wall = WE;
 	else if (!rays->intersection)
 		wall = EA;
