@@ -74,75 +74,76 @@ void	ft_draw_minimap_raylines(t_game *game)
 	}
 }
 
-float	ft_calc_wall_height(t_game *game, float dist)
+float	ft_calc_wall_height(t_game *game, float dist, t_rays *rays)
 {
-	float	line_height;
+	rays->line = (int)(WIN_H / dist * 1.8);
+	if (rays->line > WIN_H)
+		rays->line = WIN_H;
+}
 
-	line_height = (int)(WIN_H / dist * 1.8);
-	if (line_height > WIN_H)
-		line_height = WIN_H;
-	return (line_height);
+float	ft_calc_text_x(t_rays *rays)
+{
+	float	tex_x;
+
+	if (rays->intersection == 1)
+	{
+		tex_x = (int)(rays->end.x * 4 * MINIMAP_TILE) % 64;
+		if (rays->angle > PI)
+			tex_x = 63 - tex_x;
+	}
+	else
+	{
+		tex_x = (int)(rays->end.y * 4 * MINIMAP_TILE) % 64;
+		if (rays->angle > PI_2 && rays->angle < 3 * PI_2)
+			tex_x = 63 - tex_x;
+	}
+	return (tex_x);
 }
 
 float	ft_draw_3d(t_game *game, t_rays *rays, float dist)
 {
 	float	angle;
-	int		color;
 	t_point	start;
 	t_point	end;
-	float	line;
-	int		i;
-	int		j;
-	float	tex_x;
-	float	tex_y;
-	float	tex_pos;
-	float	tex_step;
 
 	angle = ft_fix_angle(game->player.angle - rays->angle);
 	dist *= cos(angle);
-	line = ft_calc_wall_height(game, dist);
-	tex_step = 64.0 / (float)line;
-	end.y = (WIN_H/2 - line / 2);
+	ft_calc_wall_height(game, dist, rays);
+	end.y = (WIN_H / 2 - rays->line / 2);
 	if (end.y  < 0 || end.y  > WIN_H)
 		end.y = 0;
-	start.y = (WIN_H/2 + line / 2);
+	start.y = (WIN_H/2 + rays->line / 2);
 	if (start.y >= WIN_H)
 		start.y >= WIN_H - 1;
 	start.x = rays->ray * (int)WIN_W / N_RAYS;
-	i = -1;
 	end.x = start.x;
-		if (rays->intersection == 1)
-		{
-			tex_x = (int)(rays->end.x*4 * MINIMAP_TILE) % 64;
-			if (rays->angle > PI)
-				tex_x = 63 - tex_x;
-		}
-		else
-		{
-			tex_x = (int)(rays->end.y*4 * MINIMAP_TILE) % 64;
-			if (rays->angle > PI_2 && rays->angle < 3 * PI_2)
-				tex_x = 63-tex_x;			
-		}
+	ft_draw_wall_line(game, rays, start, end);
+}
+
+void ft_draw_wall_line(t_game *game, t_rays *rays, t_point start, t_point end)
+{
+	int		i;
+	float	tex_pos;
+	float	tex_y;
+	float	tex_step;
+	int color;
+	int wall;
+	float	tex_x;
+	int	j;
+
+	i = -1;
+	tex_step = 64.0 / (float)rays->line;
+	tex_x = ft_calc_text_x(rays);
 	while (++i < (int)WIN_W / N_RAYS)
 	{
-		tex_pos = (end.y - WIN_H / 2 + line / 2) * tex_step;
+		tex_pos = (end.y - WIN_H / 2 + rays->line / 2) * tex_step;
 		tex_y = 0;       
 		j = end.y;
 		while (++j < start.y)
 		{
 			tex_y = (int)tex_pos & 63;
 			tex_pos += tex_step;
-			int wall;
-			if (rays->intersection && rays->angle < PI && 
-			game->player.position.y > rays->wall.y)
-				wall = NO;
-			else if (rays->intersection)
-				wall = SO;
-			else if (!rays->intersection && rays->angle  > PI_2 && rays->angle  < 3 * PI_2 &&
-			game->player.position.x > rays->wall.x)
-				wall = WE;
-			else if (!rays->intersection)
-				wall = EA;		
+			wall = ft_choose_texture(game, rays);
 			color = game->map.walls[wall][((int)tex_y * 64 + (int)tex_x)];
 			ft_apply_shade(rays, color);
 			ft_img_pix_put(&game->img, start.x, j, color);

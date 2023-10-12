@@ -80,6 +80,7 @@ typedef struct s_rays
 	float	angle;
 	float	dist_h;
 	float	dist_v;
+	float	line;
 	int		intersection;
 	t_point	map;
 	t_point	start;
@@ -207,6 +208,8 @@ int			ft_check_boundaries(t_game *game, t_rays *rays, t_point *zero);
 void		ft_check_angles_v(t_rays *rays, t_point *zero);
 void		ft_draw_minimap_raylines(t_game *game);
 void		ft_intersection(t_game *game, t_rays *rays, t_point h, t_point v);
+void		ft_draw_wall_line(t_game *game, t_rays *rays, t_point start, t_point end);
+float		ft_calc_text_x(t_rays *rays);
 //	utils/ft_read_map.c
 char		*ft_read_map(t_game *game, char argv[]);
 char		**ft_map_config(char **matrix);
@@ -214,5 +217,6 @@ char		**ft_map_map(char **matrix);
 //utils/ft_textures.c
 void		ft_load_textures(t_game *game);
 int			ft_apply_shade(t_rays *rays, int color);
+int			ft_choose_texture(t_game *game, t_rays *rays);
 
 #endif
