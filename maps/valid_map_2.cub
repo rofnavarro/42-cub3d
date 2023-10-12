@@ -1,0 +1,20 @@
+SO ./texture/wall05.xpm
+NO ./texture/wall07.xpm
+EA ./texture/wall08.xpm
+WE ./texture/wall09.xpm
+
+F 168,68,50
+C 149,240,101
+
+
+
+
+
+11111111
+10100001
+1010E001
+10100001
+10000001
+10000101
+10000001
+11111111
