@@ -25,11 +25,22 @@ void	ft_load_textures(t_game *game)
 				game->map.textures[i], &img.w, &img.h);
 		if (!img.mlx_img)
 			ft_validation_exit(game, "Error loading the texture.\n");
-		img.addr = (int *)mlx_get_data_addr(img.mlx_img, &img.bpp, &img.line_len,
-				&img.endian);
+		img.addr = (int *)mlx_get_data_addr(img.mlx_img, &img.bpp,
+				&img.line_len, &img.endian);
 		j = -1;
 		while (++j < 4096)
 			game->map.walls[i][j] = img.addr[j];
 		mlx_destroy_image(game->mlx, img.mlx_img);
 	}
+}
+
+int	ft_apply_shade(t_rays *rays, int color)
+{
+	if (rays->intersection == 0)
+		return ((int)(((color & RED) >> 16) * SHADE
+			+ ((BLACK & RED) >> 16) * (1 - SHADE)) << 16
+			| (int)(((color & GREEN) >> 8) * SHADE
+			+ ((BLACK & GREEN) >> 8) * (1 - SHADE)) << 8
+			| (int)((color & BLUE) * SHADE
+			+ (BLACK & BLUE) * (1 - SHADE)));
 }

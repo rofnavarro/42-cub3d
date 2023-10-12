@@ -12,8 +12,6 @@
 
 #include "../cub3d.h"
 
-float	ft_draw_3d(t_game *game, t_rays *rays, float dist, int color);
-
 void	ft_raycasting(t_game *game)
 {
 	t_rays	rays;
@@ -24,30 +22,30 @@ void	ft_raycasting(t_game *game)
 	rays.ray = -1;
 	rays.angle = (game->player.angle + (30 * PI / 180));
 	rays.angle = ft_fix_angle(rays.angle);
-	rays.shade = 1.0;
 	while (++rays.ray < N_RAYS)
 	{
-		ft_calc_rays_3d(game, &rays, &final_h, 'H');
-		ft_calc_rays_3d(game, &rays, &final_v, 'V');
-		if (rays.dist_h < rays.dist_v)
-			rays.intersection = 1;
-		else
-			rays.intersection = 0;
-		if (rays.dist_h < rays.dist_v)
-		{
-			rays.end.x = final_h.x;
-			rays.end.y = final_h.y;
-			ft_draw_3d(game, &rays, rays.dist_h, 0x5CB8B8);
-		}
-		else
-		{
-			rays.end.x = final_v.x;
-			rays.end.y = final_v.y;
-			ft_draw_3d(game, &rays, rays.dist_v, 0x009090);
-			rays.shade = 0.5;
-		}
+		ft_calc_3d(game, &rays, &final_h, 'H');
+		ft_calc_3d(game, &rays, &final_v, 'V');
+		ft_intersection(game, &rays, final_h, final_v);
 		rays.angle = ft_fix_angle(rays.angle - (PI / 1800));
-		
+	}
+}
+
+void	ft_intersection(t_game *game, t_rays *rays, t_point h, t_point v)
+{
+	rays->intersection = 0;
+	if (rays->dist_h < rays->dist_v)
+	{
+		rays->intersection = 1;
+		rays->end.x = h.x;
+		rays->end.y = h.y;
+		ft_draw_3d(game, rays, rays->dist_h);
+	}
+	else
+	{
+		rays->end.x = v.x;
+		rays->end.y = v.y;
+		ft_draw_3d(game, rays, rays->dist_v);
 	}
 }
 
@@ -81,14 +79,15 @@ float	ft_calc_wall_height(t_game *game, float dist)
 	float	line_height;
 
 	line_height = (int)(WIN_H / dist * 1.8);
-	if (line_height > WIN_H * 0.7)
-		line_height = WIN_H * 0.7;
+	if (line_height > WIN_H)
+		line_height = WIN_H;
 	return (line_height);
 }
 
-float	ft_draw_3d(t_game *game, t_rays *rays, float dist, int color)
+float	ft_draw_3d(t_game *game, t_rays *rays, float dist)
 {
 	float	angle;
+	int		color;
 	t_point	start;
 	t_point	end;
 	float	line;
@@ -133,26 +132,19 @@ float	ft_draw_3d(t_game *game, t_rays *rays, float dist, int color)
 		{
 			tex_y = (int)tex_pos & 63;
 			tex_pos += tex_step;
-			int wall = 0;
-			if (rays->intersection && game->player.angle < PI && 
+			int wall;
+			if (rays->intersection && rays->angle < PI && 
 			game->player.position.y > rays->wall.y)
-				wall = 0;
+				wall = NO;
 			else if (rays->intersection)
-				wall = 1;
-			else if (!rays->intersection && game->player.angle > PI_2 && game->player.angle < 3 * PI_2 &&
-			game->player.position.x < rays->wall.x)
-				wall = 2;
-			else
-				wall = 3;		
+				wall = SO;
+			else if (!rays->intersection && rays->angle  > PI_2 && rays->angle  < 3 * PI_2 &&
+			game->player.position.x > rays->wall.x)
+				wall = WE;
+			else if (!rays->intersection)
+				wall = EA;		
 			color = game->map.walls[wall][((int)tex_y * 64 + (int)tex_x)];
-			float fator = 0.60;
-			int cor_de_fundo = 0x000000;
-			if (rays->intersection == 0)
-				color = (
-    (int)(((color & 0xFF0000) >> 16) * fator + ((cor_de_fundo & 0xFF0000) >> 16) * (1 - fator)) << 16 |
-    (int)(((color & 0x00FF00) >> 8) * fator + ((cor_de_fundo & 0x00FF00) >> 8) * (1 - fator)) << 8 |
-    (int)((color & 0x0000FF) * fator + (cor_de_fundo & 0x0000FF) * (1 - fator))
-);
+			ft_apply_shade(rays, color);
 			ft_img_pix_put(&game->img, start.x, j, color);
 
 		}
@@ -160,15 +152,15 @@ float	ft_draw_3d(t_game *game, t_rays *rays, float dist, int color)
 	}
 }
 
-void	ft_calc_rays_3d(t_game *game, t_rays *rays, t_point *final, char dir)
+void	ft_calc_3d(t_game *game, t_rays *rays, t_point *final, char dir)
 {
 	t_point	zero;
 
 	rays->depth = 0;
-	rays->start.y = (game->player.position.y * MINIMAP_TILE) + \
-						((MINIMAP_TILE / 2) + MINIMAP_OFFSET);
-	rays->start.x = (game->player.position.x * MINIMAP_TILE) + \
-						((MINIMAP_TILE / 2) + MINIMAP_OFFSET);
+	rays->start.y = game->player.position.y * MINIMAP_TILE + \
+						MINIMAP_TILE / 2;
+	rays->start.x = game->player.position.x * MINIMAP_TILE + \
+						MINIMAP_TILE / 2;
 	if (dir == 'H')
 		ft_check_angles_h_3d(rays, &zero);
 	else
@@ -219,6 +211,8 @@ void	ft_calc_rays(t_game *game, t_rays *rays, t_point *final, char dir)
 
 int	ft_check_boundaries(t_game *game, t_rays *rays, t_point *zero)
 {
+	rays->wall.x = 0;
+	rays->wall.y = 0;
 	if ((rays->map.y >= 0 && rays->map.x >= 0) && \
 			(rays->map.y < ft_matrix_size(game->map.map)) && \
 			(rays->map.x < ft_strlen(game->map.map[(int)rays->map.y])))
@@ -253,8 +247,7 @@ void	ft_check_angles_h_3d(t_rays *rays, t_point *zero)
 	}
 	else if (rays->angle > PI)
 	{
-		rays->end.y = ft_convert_distance(rays->start.y) + MINIMAP_TILE \
-			;
+		rays->end.y = ft_convert_distance(rays->start.y) + MINIMAP_TILE;
 		rays->end.x = (rays->start.y - rays->end.y) * \
 						(1 / tan(rays->angle)) + rays->start.x;
 		zero->y = (MINIMAP_TILE);
@@ -281,8 +274,7 @@ void	ft_check_angles_v_3d(t_rays *rays, t_point *zero)
 	if (rays->angle < PI_2 || rays->angle > (3 * PI / 2))
 	{
 		rays->end.x = ft_convert_distance(rays->start.x) + MINIMAP_TILE;
-		rays->end.y = (rays->start.x - rays->end.x) * \
-						(tan(rays->angle)) + rays->start.y;
+		rays->end.y = (rays->start.x - rays->end.x) * tan(rays->angle) + rays->start.y;
 		zero->x = (MINIMAP_TILE);
 		zero->y = -zero->x * tan(rays->angle);
 	}

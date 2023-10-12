@@ -41,6 +41,11 @@
 # define MINIMAP_OFFSET 2
 # define LINE_SIZE 8
 # define N_RAYS 600
+# define SHADE 0.5F
+# define BLACK 0x000000
+# define RED 0xFF0000
+# define GREEN 0x00FF00
+# define BLUE 0x0000FF
 
 # define PI 3.14159265358979323846
 # define PI_2 1.57079632679489661923
@@ -53,7 +58,6 @@
 typedef struct s_img
 {
 	void	*mlx_img;
-	//char	*addr;
 	int		*addr;
 	int		w;
 	int		h;
@@ -77,7 +81,6 @@ typedef struct s_rays
 	float	dist_h;
 	float	dist_v;
 	int		intersection;
-	float	shade;
 	t_point	map;
 	t_point	start;
 	t_point	end;
@@ -195,18 +198,21 @@ void		ft_preparation(t_game *game, int argc, char **argv);
 //	utils/ft_rays_check.c
 void		ft_raycasting(t_game *game);
 void		ft_calc_rays(t_game *game, t_rays *rays, t_point *final, char dir);
-void		ft_calc_rays_3d(t_game *game, t_rays *rays, t_point *final, char dir);
+void		ft_calc_3d(t_game *game, t_rays *rays, t_point *final, char dir);
+float		ft_draw_3d(t_game *game, t_rays *rays, float dist);
 void		ft_check_angles_h(t_rays *rays, t_point *zero);
 void		ft_check_angles_h_3d(t_rays *rays, t_point *zero);
 void		ft_check_angles_v_3d(t_rays *rays, t_point *zero);
 int			ft_check_boundaries(t_game *game, t_rays *rays, t_point *zero);
 void		ft_check_angles_v(t_rays *rays, t_point *zero);
 void		ft_draw_minimap_raylines(t_game *game);
+void		ft_intersection(t_game *game, t_rays *rays, t_point h, t_point v);
 //	utils/ft_read_map.c
 char		*ft_read_map(t_game *game, char argv[]);
 char		**ft_map_config(char **matrix);
 char		**ft_map_map(char **matrix);
 //utils/ft_textures.c
 void		ft_load_textures(t_game *game);
+int			ft_apply_shade(t_rays *rays, int color);
 
 #endif
