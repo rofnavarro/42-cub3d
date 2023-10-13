@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_walls.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rinacio <rinacio@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 16:02:37 by rinacio           #+#    #+#             */
-/*   Updated: 2023/09/19 17:50:49 by rinacio          ###   ########.fr       */
+/*   Updated: 2023/10/13 16:42:06 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_check_angles_v_3d(t_rays *rays, t_point *zero)
 	{
 		rays->end.x = rays->start.x;
 		rays->end.y = rays->start.y;
-		rays->depth = 8;
+		rays->depth = 20;
 	}
 }
 
@@ -60,7 +60,7 @@ void	ft_check_angles_h_3d(t_rays *rays, t_point *zero)
 	{
 		rays->end.y = rays->start.y;
 		rays->end.x = rays->start.x;
-		rays->depth = 8;
+		rays->depth = 20;
 	}
 }
 
@@ -77,7 +77,7 @@ void	ft_calc_3d(t_game *game, t_rays *rays, t_point *final, char dir)
 		ft_check_angles_h_3d(rays, &zero);
 	else
 		ft_check_angles_v_3d(rays, &zero);
-	while (rays->depth < 8)
+	while (rays->depth < 20)
 	{
 		rays->map.y = ft_convert_distance(rays->end.y) / (MINIMAP_TILE);
 		rays->map.x = ft_convert_distance(rays->end.x) / (MINIMAP_TILE);

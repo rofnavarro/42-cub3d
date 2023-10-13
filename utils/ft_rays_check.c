@@ -6,7 +6,7 @@
 /*   By: rferrero <rferrero@student.42sp.org.br     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 17:11:54 by rferrero          #+#    #+#             */
-/*   Updated: 2023/09/30 14:26:31 by rferrero         ###   ########.fr       */
+/*   Updated: 2023/10/13 16:42:07 by rferrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	ft_check_boundaries(t_game *game, t_rays *rays, t_point *zero)
 	{
 		if (game->map.map[(int)rays->map.y][(int)rays->map.x] == '1')
 		{
-			rays->depth = 8;
+			rays->depth = 20;
 			rays->wall.x = rays->map.x;
 			rays->wall.y = rays->map.y;
 		}
