@@ -1,3 +1,8 @@
+- [English](#english)
+- [Português](#português)
+
+# English
+
 # cub3d
 ## Description
 Cub3d is a raycasting project in C using the minilibX library. This project was developed as part of the 42 São Paulo curriculum.
@@ -34,6 +39,9 @@ make
 - Renata ([renatainacio](https://github.com/renatainacio))
 
 ____________________________________________________
+
+# Português
+
 # cub3d
 ## Descrição
 
