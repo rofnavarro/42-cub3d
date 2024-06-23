@@ -18,7 +18,7 @@ The main goal of Cub3d is to create a simple 3D game where the player can move a
 ## How to Use
 1. Clone this repository:
 ```bash
-git clone https://github.com/your_username/cub3d.git
+git clone git@github.com:rofnavarro/42-cub3d.git
 ```
 2. Compile the program:
 ```bash
@@ -58,7 +58,7 @@ O objetivo principal do Cub3d é criar um jogo 3D simples, onde o jogador pode s
 ## Como usar
 1. Clone este repositório:
 ```bash
-git clone https://github.com/seu_usuario/cub3d.git
+git clone git@github.com:rofnavarro/42-cub3d.git
 ```
 2. Compile o programa:
 ```bash
